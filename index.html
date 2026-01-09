@@ -1,244 +1,707 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejus Dinesh - AI & Machine Learning Engineer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tejus Dinesh - AI Engineer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">Tejus<span>Dinesh</span></a>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="bg-animation" id="particles"></div>
 
-            <a href="https://github.com/" target="_blank" class="nav-icon" aria-label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/tejus-dinesh" target="_blank" class="nav-icon" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            </a>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                <span class="theme-toggle-icon moon">🌙</span>
-                <span class="theme-toggle-icon sun">☀️</span>
-            </button>
-        </div>
-    </nav>
+    <header>
+        <div class="brand fade-in-up">TejusDinesh</div>
+        <nav>
+            <a href="#hero" class="fade-in-up" style="animation-delay: 0.1s">Home</a>
+            <a href="#experience" class="fade-in-up" style="animation-delay: 0.2s">Experience</a>
+            <a href="#skills" class="fade-in-up" style="animation-delay: 0.3s">Skills</a>
+            <a href="#projects" class="fade-in-up" style="animation-delay: 0.4s">Projects</a>
+            <a href="#contact" class="fade-in-up" style="animation-delay: 0.5s">Contact</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-particle particle-1"></div>
-        <div class="hero-particle particle-2"></div>
-        <div class="hero-particle particle-3"></div>
-        <div class="hero-content">
-            <h1>Hi, I'm Tejus <span class="hero-title">Tejus Dinesh</span></h1>
-            <p>AI & Machine Learning Engineer specializing in LLMs, Fine-tuning, AI Agents and RAG Systems</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                <a href="https://drive.google.com/file/d/1GuiYC0ENH0_izQinOPRZf3P1xO9ViU9V/view?usp=sharing" target="_blank" class="btn btn-resume">Resume</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="images/WI4.png" alt="Tejus Dinesh">
-            </div>
-            <div class="about-text">
-                <p>I'm a Machine Learning Engineer with expertise in AI Agents, Large Language Models, and Retrieval Augmented Generation (RAG) systems. Currently pursuing my Master's in Artificial Intelligence at Northeastern University, I combine academic knowledge with professional experience at C10 Labs and Autodesk.</p>
-                <p>My passion lies in creating intelligent systems that can understand, reason, and interact in meaningful ways. I specialize in developing autonomous AI agents and knowledge graph structures that enhance information processing and extraction workflows.</p>
-                <h3>Skills</h3>
-                <div class="skills">
-                    <span class="skill-tag">AI Agents</span>
-                    <span class="skill-tag">LLM Fine-tuning</span>
-                    <span class="skill-tag">Generative AI</span>
-                    <span class="skill-tag">RAG Systems</span>
-                    <span class="skill-tag">Knowledge Graphs</span>
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">NLP</span>
-                    <span class="skill-tag">Deep Learning</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">LangChain</span>
-                    <span class="skill-tag">AWS</span>
+    <main>
+        <section id="hero" class="section hero">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in-up">AI Engineer & ML Specialist</h1>
+                <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s">Architecting Intelligent Systems at
+                    Scale</p>
+                <div class="expertise-badges fade-in-up" style="animation-delay: 0.3s">
+                    <span class="badge badge-primary">LLM Fine-tuning</span>
+                    <span class="badge badge-primary">AI Agents</span>
+                    <span class="badge badge-primary">RAG Systems</span>
                 </div>
-            </div>
-        </div>
-    </section>
+                <p class="hero-description fade-in-up" style="animation-delay: 0.4s">
+                    Specializing in advanced AI agent development, large language model optimization, and
+                    enterprise-scale ML systems.
+                    Expert in cutting-edge techniques including LoRA, ETHER+, and OFT fine-tuning, autonomous agent
+                    orchestration with LangGraph,
+                    and building production RAG systems with 75%+ accuracy. Currently pursuing MS in Artificial
+                    Intelligence at Northeastern University,
+                    focusing on transformer architectures and deep learning innovation.
+                </p>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 class="timeline-title">C10 Labs</h3>
-                    <p class="timeline-subtitle"><b>Machine Learning Engineer Co-op</b></p>
-                    <ul class="timeline-bullets">
-                        <li>Devised autonomous AI agents to systematically process email data</li>
-                        <li>Formulated a knowledge graph structure for an advanced Q&A chatbot</li>
-                        <li>Pioneered a comprehensive end-to-end pipeline integrating AI agents with LLMs</li>
-                    </ul>
+                <div class="hero-actions fade-in-up" style="animation-delay: 0.6s">
+                    <a href="#contact" class="cta-button">Let's Connect</a>
+                    <a href="https://drive.google.com/file/d/1pO48KxdeknQ4UCH2q3rb5w0uOcx2xCRf/view?usp=sharing"
+                        target="_blank" class="download-resume" id="downloadResume">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Resume
+                    </a>
                 </div>
-                <div class="timeline-date">Aug 2024 - Dec 2024</div>
-                <div class="timeline-dot"></div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Autodesk</h3>
-                    <p class="timeline-subtitle"><b>Software Engineer</b></p>
-                    <ul class="timeline-bullets">
-                        <li> Architected Azure App Proxy for in-house applications to enable internet access without VPN reducing latency </li>
-                        <li> Onboarded applications to the Azure App proxy setup</li>
-                        <li>Implemented AWS services for automated Sailpoint Access Review report generation for quarter end reviews</li>
-                      
-
-                    </ul>
-                </div>
-                <div class="timeline-date"> Jun 2022 - Aug 2023</div>
-                <div class="timeline-dot"></div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Autodesk</h3>
-                    <p class="timeline-subtitle"><b>Software Engineer Intern</b></p>
-                    <ul class="timeline-bullets">
-                        <li> Executed design and implementation of an Automated Single Sign-On (SSO) in AWS using Lambda, Gateway, SQS and Azure cloud</li>
-                        <li>Pioneered the company-wide transistion of two-factor Authenticator to Microsoft Authenticator</li>
-                        <li>Developed a comprehensive PowerBI dashboard for tracking the Authenticator rollout</li>
-                        <li> Delivered Insights into the rollout progress and pain points</li>
-
-                    </ul>
-                </div>
-                <div class="timeline-date">Jun 2021 - May 2022</div>
-                <div class="timeline-dot"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-container" id="projects-container">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="images/EngToKan.png" alt="Kannada to English Translation">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Kannada to English Translation Model</h3>
-                    <p class="project-description">Designed a Language Model with Encoder-Decoder architecture and Attention mechanism for translation between English and Kannada. Fine-tuned google/mt5-large LLM model to increase performance by 15%.</p>
-                    <div class="project-tech">
-                        <span>LLM</span>
-                        <span>NLP</span>
-                        <span>Fine-tuning</span>
-                        <span>Attention</span>
-                        <span>LSTM </span>
+                <div class="stats fade-in-up" style="animation-delay: 0.8s">
+                    <div class="stat-item">
+                        <div class="stat-wrapper">
+                            <span class="stat-number counter" data-target="3.95">0</span>
+                        </div>
+                        <div class="stat-label">GPA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-wrapper">
+                            <span class="stat-number counter" data-target="2">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-wrapper">
+                            <span class="stat-number counter" data-target="10">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <div class="stat-label">AI Projects</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="images/Blindsight.png" alt="BlindSight">
+            <div class="hero-image fade-in-right">
+                <div class="image-container">
+                    <img src="images/Facephoto.png" alt="Tejus Dinesh" class="profile-image">
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">BlindSight: Voice-Activated AI Assistant</h3>
-                    <p class="project-description">Engineered a voice-controlled file management platform for visually impaired users with 95% speech recognition accuracy. Integrated LLaMA-70B with customized in-context learning strategies.</p>
-                    <div class="project-tech">
-                        <span>LLaMA</span>
-                        <span>ICL</span>
-                        <span>Whisper</span>
-                        <span>Accessibility</span>
-                    </div>
+
+            </div>
+        </section>
+
+        <section id="experience" class="section experience">
+            <h2 class="section-title">Experience</h2>
+
+
+
+            <div class="ai-highlights scroll-animate">
+                <div class="highlight-card">
+                    <div class="highlight-icon">🤖</div>
+                    <h3>Autonomous AI Agents</h3>
+                    <p>Engineered multi-agent systems processing 10,000+ emails daily with LangGraph orchestration</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🧠</div>
+                    <h3>LLM Optimization</h3>
+                    <p>Achieved 73.9% ROUGE-1 with ETHER+ fine-tuning using only 344K parameters</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">⚡</div>
+                    <h3>Production RAG</h3>
+                    <p>Built enterprise RAG systems with 75%+ accuracy on complex document analysis</p>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="images/anakinBreakingBad.png" alt="Anakin Breaking Bad">
+            <div class="experience-grid">
+                <div class="experience-card scroll-animate" data-expandable>
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <span>C10</span>
+                        </div>
+                        <div class="experience-meta">
+                            <h3 class="job-title">Machine Learning Engineer Co-op</h3>
+                            <p class="company">C10 Labs • Cambridge, MA</p>
+                            <p class="duration">Aug 2024 - Dec 2024 • 5 months</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-body">
+                        <p class="job-description">
+                            Engineered autonomous AI agents for high-volume email analysis processing 10,000+ messages
+                            daily.
+                            Developed advanced RAG-based chatbots achieving 75%+ accuracy using LangChain and vector
+                            databases.
+                            Built fully automated document processing pipelines with LLM-powered agents for 500-1,500
+                            page documents,
+                            implementing chain-of-thought reasoning and multi-agent orchestration with LangGraph.
+                        </p>
+
+                        <div class="impact-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">10K+</div>
+                                <div class="metric-label">Daily Messages</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">75%+</div>
+                                <div class="metric-label">RAG Accuracy</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">1,500</div>
+                                <div class="metric-label">Pages/Doc</div>
+                            </div>
+                        </div>
+
+                        <div class="experience-details" style="display: none;">
+                            <h4>Key Achievements</h4>
+                            <ul>
+                                <li>Designed and deployed multi-agent email classification system processing 10,000+
+                                    daily messages with 85%+ accuracy</li>
+                                <li>Developed RAG-based document Q&A system achieving 75%+ accuracy on complex technical
+                                    documents using LangChain and Pinecone vector database</li>
+                                <li>Built automated document processing pipeline handling 500-1,500 page documents with
+                                    LLM-powered extraction and summarization</li>
+                                <li>Implemented chain-of-thought reasoning and multi-agent orchestration using LangGraph
+                                    for complex workflow automation</li>
+                                <li>Optimized LLM prompts and retrieval strategies, reducing API costs by 40% while
+                                    maintaining accuracy</li>
+                            </ul>
+
+                            <h4>Technical Environment</h4>
+                            <p class="tech-description">
+                                Worked extensively with OpenAI's GPT models, Claude, and open-source LLMs. Built
+                                production-grade AI systems
+                                using LangChain, LangGraph, and vector databases (Pinecone, Chroma). Implemented
+                                advanced RAG techniques
+                                including hybrid search, query rewriting, and context compression. Deployed solutions on
+                                AWS infrastructure
+                                with containerization using Docker.
+                            </p>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">LangGraph</span>
+                            <span class="tech-tag">OpenAI API</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">Vector DB</span>
+                        </div>
+
+                        <div class="view-details-hint">
+                            <span>Click to view details</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">Anakin Breaking Bad</h3>
-                    <p class="project-description">Engineered an AI-based game that blends reinforcement learning, search algorithms, and NLP. Used VADER for sentiment analysis on player input to influence AI decisions.</p>
-                    <div class="project-tech">
-                        <span>RL</span>
-                        <span>NLP</span>
-                        <span>VADER</span>
-                        <span>Game AI</span>
+
+                <div class="experience-card scroll-animate" data-expandable>
+                    <div class="experience-header">
+                        <div class="company-logo autodesk">
+                            <span>ADSK</span>
+                        </div>
+                        <div class="experience-meta">
+                            <h3 class="job-title">Software Engineer</h3>
+                            <p class="company">Autodesk • Bengaluru, India</p>
+                            <p class="duration">Jun 2021 - Aug 2023 • 2 years 3 months</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-body">
+                        <p class="job-description">
+                            Architected Azure App Proxy solutions for secure enterprise authentication.
+                            Built automated SSO systems reducing access provisioning time from 2 weeks to 3 minutes
+                            (99.7% improvement).
+                            Developed Power BI dashboards and data pipelines for enterprise-wide Microsoft Authenticator
+                            rollout,
+                            monitoring 50,000+ user deployments with real-time analytics.
+                        </p>
+
+                        <div class="impact-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">99.7%</div>
+                                <div class="metric-label">Time Reduction</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">50K+</div>
+                                <div class="metric-label">Users Monitored</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">3 min</div>
+                                <div class="metric-label">Provisioning</div>
+                            </div>
+                        </div>
+
+                        <div class="experience-details" style="display: none;">
+                            <h4>Key Achievements</h4>
+                            <ul>
+                                <li>Architected and deployed Azure App Proxy solutions for 50+ enterprise applications,
+                                    enabling secure remote access</li>
+                                <li>Developed automated SSO provisioning system that reduced access setup time from 2
+                                    weeks to 3 minutes (99.7% improvement)</li>
+                                <li>Built comprehensive Power BI dashboards tracking Microsoft Authenticator deployment
+                                    across 50,000+ users</li>
+                                <li>Created automated data pipelines processing authentication logs and user activity,
+                                    providing real-time security insights</li>
+                                <li>Implemented monitoring and alerting systems reducing security incident response time
+                                    by 60%</li>
+                                <li>Led migration of legacy authentication systems to modern OAuth 2.0 and SAML-based
+                                    SSO</li>
+                            </ul>
+
+                            <h4>Technical Environment</h4>
+                            <p class="tech-description">
+                                Specialized in Microsoft Azure ecosystem including Azure Active Directory, App Proxy,
+                                and Conditional Access.
+                                Built data pipelines using Python, Azure Functions, and Logic Apps. Developed Power BI
+                                dashboards with
+                                DAX queries and custom visualizations. Worked with identity protocols including OAuth
+                                2.0, SAML, and OpenID Connect.
+                                Managed infrastructure as code using Azure Resource Manager templates.
+                            </p>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SSO</span>
+                        </div>
+
+                        <div class="view-details-hint">
+                            <span>Click to view details</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="images/gpt2.png" alt = "Pre-trained GPT-2">
+        <section id="skills" class="section skills">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category scroll-animate">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">Spark</span>
+                        <span class="skill-tag">R Programming</span>
+                        <span class="skill-tag">C programming</span>
+                    </div>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">Pre-trained GPT-2</h3>
-                    <p class="project-description">Built a decoder-only Transformer architecture based on the Vaswani et al. model. Pre-trained models on WikiText to learn high-quality unsupervised language representations.</p>
-                    <div class="project-tech">
-                        <span>GPT</span>
+
+                <div class="skill-category scroll-animate">
+                    <h3>Libraries</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">Autogen</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">OpenAI</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">HuggingFace</span>
+                    </div>
+                </div>
+
+                <div class="skill-category scroll-animate">
+                    <h3>Software & Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Neo4j</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">GIT</span>
+                        <span class="skill-tag">Github</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-category scroll-animate">
+                    <h3>Domains</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">LLM Fine-tuning</span>
+                        <span class="skill-tag">Generative AI</span>
+                        <span class="skill-tag">RAG Systems</span>
+                        <span class="skill-tag">Knowledge Graphs</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Big Data</span>
+                        <span class="skill-tag">Algorithms</span>
+                        <span class="skill-tag">Data Science</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects">
+            <h2 class="section-title">Featured AI Projects</h2>
+
+            <div class="research-banner scroll-animate">
+                <div class="research-content">
+                    <h3>🔬 AI Research & Innovation</h3>
+                    <p>Conducting cutting-edge research in LLM fine-tuning optimization, machine unlearning, and
+                        multi-agent systems</p>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card-mini scroll-animate" data-project="llm-finetuning">
+                    <div class="card-header-row">
+                        <div class="project-badge">Featured Research</div>
+                        <a href="https://github.com/Dinesh-Tejus/Comparing-LORA-OFT-ETHER" target="_blank"
+                            class="project-github-link" onclick="event.stopPropagation()" aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-title-row">
+
+                        <h3 class="project-title-mini">LLM Fine-tuning Comparison Study</h3>
+                    </div>
+                    <p class="project-summary">Comprehensive evaluation of LoRA, OFT, and ETHER+ fine-tuning
+                        methodologies achieving 73.9% ROUGE-1 score.</p>
+                    <div class="tech-tags-mini">
+                        <span>PyTorch</span>
+                        <span>LoRA</span>
                         <span>Transformers</span>
-                        <span>Pre-training</span>
-                        <span>WikiText</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">73.9% ROUGE-1</span>
+                        <span class="mini-metric">92% Efficiency</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
                     </div>
                 </div>
+
+                <div class="project-card-mini scroll-animate" data-project="blindsight">
+                    <div class="card-header-row">
+                        <div class="project-badge">AI Accessibility</div>
+                        <a href="https://github.com/Dinesh-Tejus/BlindSight" target="_blank" class="project-github-link"
+                            onclick="event.stopPropagation()" aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-title-row">
+
+                        <h3 class="project-title-mini">BlindSight: AI File Assistant</h3>
+                    </div>
+                    <p class="project-summary">Voice-controlled platform with LLaMA-70B achieving 95% speech accuracy
+                        and 85% task success.</p>
+                    <div class="tech-tags-mini">
+                        <span>LLaMA-70B</span>
+                        <span>Speech Rec</span>
+                        <span>Python</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">95% Speech</span>
+                        <span class="mini-metric">85% Success</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="unlearning">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Machine Unlearning Research</h3>
+                        </div>
+                        <a href="https://github.com/Dinesh-Tejus/Machine-Unlearning" target="_blank"
+                            class="project-github-link" onclick="event.stopPropagation()" aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">Implementation of selective knowledge removal for LLaMA-3-8B using Sparse
+                        Autoencoders and LoRA.</p>
+                    <div class="tech-tags-mini">
+                        <span>LLaMA-3</span>
+                        <span>PyTorch</span>
+                        <span>LoRA</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">LLaMA-3</span>
+                        <span class="mini-metric">Privacy AI</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="translation">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Regional Language Translation</h3>
+                        </div>
+                        <a href="https://github.com/Dinesh-Tejus/Kannada-English-Translation" target="_blank"
+                            class="project-github-link" onclick="event.stopPropagation()" aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">LSTM Encoder-Decoder with attention for Kannada-English translation, 15%
+                        improvement over baseline.</p>
+                    <div class="tech-tags-mini">
+                        <span>LSTM</span>
+                        <span>MT5</span>
+                        <span>TensorFlow</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">LSTM</span>
+                        <span class="mini-metric">MT5</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="gpt2">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Custom GPT-2 Implementation</h3>
+                        </div>
+                        <a href="#" target="_blank" class="project-github-link" onclick="event.stopPropagation()"
+                            aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">Decoder-only Transformer from scratch with 134M+ parameters, pre-trained
+                        on WikiText dataset.</p>
+                    <div class="tech-tags-mini">
+                        <span>GPT-2</span>
+                        <span>PyTorch</span>
+                        <span>Transformers</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">134M Params</span>
+                        <span class="mini-metric">From Scratch</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="dialogue">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Dialogue Summarization</h3>
+                        </div>
+                        <a href="#" target="_blank" class="project-github-link" onclick="event.stopPropagation()"
+                            aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">Fine-tuned BART-large-CNN achieving ROUGE-1: 0.419 and ROUGE-2: 0.216 on
+                        SAMSum dataset.</p>
+                    <div class="tech-tags-mini">
+                        <span>BART</span>
+                        <span>HuggingFace</span>
+                        <span>NLP</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">BART</span>
+                        <span class="mini-metric">0.419 ROUGE</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="penicillin">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Biopharma Big Data Analysis</h3>
+                        </div>
+                        <a href="#" target="_blank" class="project-github-link" onclick="event.stopPropagation()"
+                            aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">Big data analysis using Hadoop and PySpark on Databricks to optimize
+                        penicillin production settings.</p>
+                    <div class="tech-tags-mini">
+                        <span>PySpark</span>
+                        <span>Hadoop</span>
+                        <span>Databricks</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">Big Data</span>
+                        <span class="mini-metric">Analytics</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="project-card-mini view-more-card scroll-animate">
+                    <a href="https://github.com/Dinesh-Tejus" target="_blank" class="view-more-link-wrapper">
+                        <div class="view-more-content">
+                            <div class="view-more-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3>View More Projects</h3>
+                            <p>Explore more code repositories and experiments on my GitHub</p>
+                            <div class="arrow-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="projects-navigation">
-            <button class="projects-nav-btn" id="scroll-left">←</button>
-            <button class="projects-nav-btn" id="scroll-right">→</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2 class="contact-title">Get In Touch</h2>
-        
-        <div class="social-icons">
 
-            <a href="mailto:dinesh.te@northeastern.edu" class="social-link" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="M22 7l-10 7L2 7" />
-                </svg>
-            </a>
 
-            <a href="https://github.com/" class="social-link" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/tejus-dinesh" class="social-link" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            </a>
-            
-        </div>
-        
-        
-        <div class="contact-divider"></div>
-    </section>
+        <section id="contact" class="section contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-info scroll-animate">
+                <p class="contact-description">
+                    Ready to collaborate on AI projects? Let's build something amazing together.
+                </p>
 
-    <!-- Footer -->
-<!-- Footer -->
-<footer>
-    <p class="footer-text">© 2025 Tejus Dinesh. All rights reserved.</p>
-</footer>
+                <div class="contact-links">
+                    <a href="mailto:dtejus03@gmail.com" class="contact-link" title="Email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                    <a href="tel:+18576547354" class="contact-link" title="Phone">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tejus-dinesh/" class="contact-link" title="LinkedIn"
+                        target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/Dinesh-Tejus" class="contact-link" title="GitHub" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

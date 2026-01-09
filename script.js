@@ -1,621 +1,735 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+// Animated background particles
+function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+    particle.style.animationDelay = Math.random() * 5 + 's';
+    return particle;
+}
 
-// Theme toggle functionality
-function setupThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    
-    // Check for saved theme preference or default to 'light'
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    themeToggle.addEventListener('click', () => {
-        // Toggle theme
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Update DOM and localStorage
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+function initParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        container.appendChild(createParticle());
+    }
+}
+
+// Smooth scrolling for navigation
+function initSmoothScroll() {
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
 }
 
-// Animate elements on scroll
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-        }
-    });
-}, {
-    threshold: 0.1
-});
+// Counter animation for stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
 
-// Observe elements for animation
-// Projects navigation
-function setupProjectsNavigation() {
-    const projectsContainer = document.getElementById('projects-container');
-    const scrollLeftBtn = document.getElementById('scroll-left');
-    const scrollRightBtn = document.getElementById('scroll-right');
-    const scrollAmount = projectsContainer.clientWidth / 2; // Scroll one project worth
-    
-    // Infinite scrolling effect
-    let isScrolling = false;
-    
-    scrollLeftBtn.addEventListener('click', () => {
-        if (isScrolling) return;
-        isScrolling = true;
-        
-        projectsContainer.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
-        
-        // Check if we're at the beginning, if so, reset to end
-        setTimeout(() => {
-            if (projectsContainer.scrollLeft <= 0) {
-                // Disable smooth scrolling temporarily
-                projectsContainer.style.scrollBehavior = 'auto';
-                projectsContainer.scrollLeft = projectsContainer.scrollWidth;
-                // Re-enable smooth scrolling
-                setTimeout(() => {
-                    projectsContainer.style.scrollBehavior = 'smooth';
-                }, 50);
-            }
-            isScrolling = false;
-        }, 500);
-    });
-    
-    scrollRightBtn.addEventListener('click', () => {
-        if (isScrolling) return;
-        isScrolling = true;
-        
-        projectsContainer.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-        
-        // Check if we're at the end, if so, reset to beginning
-        setTimeout(() => {
-            if (projectsContainer.scrollLeft + projectsContainer.clientWidth >= projectsContainer.scrollWidth - 10) {
-                // Disable smooth scrolling temporarily
-                projectsContainer.style.scrollBehavior = 'auto';
-                projectsContainer.scrollLeft = 0;
-                // Re-enable smooth scrolling
-                setTimeout(() => {
-                    projectsContainer.style.scrollBehavior = 'smooth';
-                }, 50);
-            }
-            isScrolling = false;
-        }, 500);
-    });
-    
-    // Auto-scroll every 5 seconds
-    let autoScrollInterval;
-    
-    function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            scrollRightBtn.click();
-        }, 8000);
-    }
-    
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-    
-    // Start auto-scroll initially
-    startAutoScroll();
-    
-    // Pause auto-scroll when hovering over projects
-    projectsContainer.addEventListener('mouseenter', stopAutoScroll);
-    projectsContainer.addEventListener('mouseleave', startAutoScroll);
-    
-    // Also pause when touching on mobile
-    projectsContainer.addEventListener('touchstart', stopAutoScroll);
-    projectsContainer.addEventListener('touchend', startAutoScroll);
-}
+    const countUp = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Setup theme toggle
-    setupThemeToggle();
-    
-    // Setup projects navigation
-    setupProjectsNavigation();
-    
-    // Setup animations
-    document.querySelectorAll('.timeline-item, .project-card, .section-title, .about-content, .contact-container').forEach(el => {
-        observer.observe(el);
-    });
-
-
-    const styleElement = document.createElement('style');
-    styleElement.textContent = bubbleStyles;
-    document.head.appendChild(styleElement);
-    
-    // Call the interactive bubbles setup
-    setupInteractiveBubbles();
-
-    // Mobile menu toggle (placeholder for future implementation)
-    const mobileMenuSetup = () => {
-        // This function can be expanded when implementing mobile navigation
-        const windowWidth = window.innerWidth;
-        if (windowWidth <= 480) {
-            console.log('Mobile view active');
-            // Future implementation for mobile menu toggle
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => countUp(counter), 1);
+        } else {
+            counter.innerText = target;
         }
     };
 
-    // Run on load
-    mobileMenuSetup();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                countUp(counter);
+                observer.unobserve(counter);
+            }
+        });
+    });
 
-    // Run on resize
-    window.addEventListener('resize', mobileMenuSetup);
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
 
-    // Add active class to current section in navigation
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
+// Scroll animations
+function initScrollAnimations() {
+    const animateElements = document.querySelectorAll('.scroll-animate');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    animateElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Header scroll effect
+function initHeaderScroll() {
+    const header = document.querySelector('header');
 
     window.addEventListener('scroll', () => {
-        let current = '';
-        
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
+
+// Parallax effect for background
+function initParallax() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.bg-animation');
+        if (parallax) {
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        }
+    });
+}
+
+// Download resume functionality
+function initDownloadResume() {
+    const downloadBtn = document.getElementById('downloadResume');
+
+    downloadBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Add a loading state
+        const originalText = this.innerHTML;
+        this.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+            </svg>
+            Preparing...
+        `;
+
+        // Simulate download preparation
+        setTimeout(() => {
+            // Create a mock PDF download
+            const link = document.createElement('a');
+            link.href = '#'; // Replace with actual resume PDF path
+            link.download = 'Tejus_Dinesh_Resume.pdf';
+
+            // For demo purposes, show an alert
+            alert('Resume download would start here. Please add your actual resume PDF to the project and update the href.');
+
+            // Reset button
+            downloadBtn.innerHTML = originalText;
+        }, 1500);
+    });
+}
+
+// Skill tag interaction
+function initSkillTags() {
+    const skillTags = document.querySelectorAll('.skill-tag');
+
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+        });
+
+        tag.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
+// Project cards interaction
+function initProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card-mini');
+
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-8px)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Project Modal System
+function initProjectModals() {
+    const projectData = {
+        'llm-finetuning': {
+            badge: 'Featured Research',
+            title: 'LLM Fine-tuning Comparison Study',
+            description: 'Comprehensive evaluation of LoRA, OFT, and ETHER+ fine-tuning methodologies achieving 73.9% ROUGE-1 score. Demonstrated ETHER+\'s superior parameter efficiency with only 344K trainable parameters versus 4.2M for LoRA, while maintaining competitive performance. Implemented custom attention mechanisms and analyzed trade-offs between model capacity and training efficiency.',
+            metrics: [
+                { value: '73.9%', label: 'ROUGE-1 Score' },
+                { value: '92%', label: 'Parameter Reduction' },
+                { value: '344K', label: 'Trainable Params' }
+            ],
+            technologies: ['PyTorch', 'HuggingFace', 'LoRA', 'ETHER+', 'OFT', 'Transformers'],
+            features: [
+                'Comparative analysis of three state-of-the-art fine-tuning methods',
+                'Custom implementation of ETHER+ optimization algorithm',
+                'Comprehensive benchmarking on multiple NLP tasks',
+                'Parameter efficiency analysis and memory profiling',
+                'Detailed ablation studies on attention mechanisms'
+            ],
+            link: 'https://github.com/Dinesh-Tejus/Comparing-LORA-OFT-ETHER'
+        },
+        'blindsight': {
+            badge: 'AI Accessibility',
+            title: 'BlindSight: AI-Powered File Assistant',
+            description: 'Voice-controlled file management platform for visually impaired users with 95% speech recognition accuracy. Integrated LLaMA-70B with custom in-context learning strategies achieving 85% task completion accuracy. Implemented advanced prompt engineering and few-shot learning to handle complex file operations through natural language.',
+            metrics: [
+                { value: '95%', label: 'Speech Accuracy' },
+                { value: '85%', label: 'Task Success Rate' },
+                { value: '70B', label: 'Model Parameters' }
+            ],
+            technologies: ['LLaMA-70B', 'In-Context Learning', 'Speech Recognition', 'Python', 'Natural Language Processing'],
+            features: [
+                'Real-time voice command processing with high accuracy',
+                'Advanced prompt engineering for file operations',
+                'Few-shot learning for handling diverse user commands',
+                'Accessible interface design for visually impaired users',
+                'Context-aware file management and navigation'
+            ],
+            link: 'https://github.com/Dinesh-Tejus/BlindSight'
+        },
+        'unlearning': {
+            badge: 'Research',
+            title: 'Machine Unlearning Research',
+            description: 'Implementation of "Who is Harry Potter?" paper for LLaMA-3-8B model. Conducted comparative study of Guardrailing, LoRA fine-tuning, and Sparse Autoencoders for selective knowledge removal while preserving model intelligence. Achieved targeted forgetting with minimal impact on general capabilities, demonstrating practical applications for privacy compliance and bias mitigation in production LLMs.',
+            metrics: [
+                { value: '8B', label: 'Model Size' },
+                { value: '3', label: 'Methods Compared' },
+                { value: '95%', label: 'Knowledge Retained' }
+            ],
+            technologies: ['LLaMA-3', 'Sparse Autoencoders', 'LoRA', 'PyTorch', 'Guardrailing'],
+            features: [
+                'Selective knowledge removal from large language models',
+                'Comparative analysis of three unlearning techniques',
+                'Preservation of general model capabilities during unlearning',
+                'Privacy compliance and bias mitigation strategies',
+                'Detailed performance metrics and evaluation framework'
+            ],
+            link: 'https://github.com/Dinesh-Tejus/Machine-Unlearning'
+        },
+        'translation': {
+            badge: 'NLP',
+            title: 'Regional Language Translation',
+            description: 'Built LSTM-based Encoder-Decoder with attention mechanism for Kannada-English translation. Fine-tuned google/mt5-large achieving 15% performance improvement over baseline models. Implemented custom tokenization and preprocessing pipelines for handling regional language complexities.',
+            metrics: [
+                { value: '15%', label: 'Improvement' },
+                { value: 'MT5', label: 'Base Model' },
+                { value: 'LSTM', label: 'Architecture' }
+            ],
+            technologies: ['LSTM', 'Attention Mechanism', 'MT5', 'TensorFlow', 'Seq2Seq'],
+            features: [
+                'Custom LSTM encoder-decoder architecture with attention',
+                'Fine-tuning of google/mt5-large for regional languages',
+                'Advanced preprocessing for Kannada script',
+                'Attention visualization and analysis',
+                'Comprehensive evaluation on translation quality'
+            ],
+            link: 'https://github.com/Dinesh-Tejus/Kannada-English-Translation'
+        },
+        'gpt2': {
+            badge: 'Deep Learning',
+            title: 'Custom GPT-2 Implementation',
+            description: 'Built decoder-only Transformer architecture from scratch with 134M+ parameters. Pre-trained on WikiText dataset for high-quality unsupervised language representations. Implemented multi-head attention, positional encoding, and layer normalization from first principles.',
+            metrics: [
+                { value: '134M+', label: 'Parameters' },
+                { value: '12', label: 'Transformer Layers' },
+                { value: 'WikiText', label: 'Training Data' }
+            ],
+            technologies: ['Transformers', 'PyTorch', 'GPT-2', 'Attention Mechanism', 'Neural Networks'],
+            features: [
+                'Complete Transformer decoder implementation from scratch',
+                'Multi-head self-attention mechanism',
+                'Positional encoding and embeddings',
+                'Layer normalization and residual connections',
+                'Pre-training on large-scale text corpus'
+            ],
+            link: '#'
+        },
+        'dialogue': {
+            badge: 'NLP',
+            title: 'Dialogue Summarization',
+            description: 'Fine-tuned BART-large-CNN on dialogue data comparing 3 transformer architectures. Achieved highest ROUGE scores (ROUGE-1: 0.419, ROUGE-2: 0.216) on SAMSum dataset. Implemented custom training loops and evaluation metrics for dialogue-specific summarization.',
+            metrics: [
+                { value: '0.419', label: 'ROUGE-1' },
+                { value: '0.216', label: 'ROUGE-2' },
+                { value: 'BART', label: 'Architecture' }
+            ],
+            technologies: ['BART', 'Transformers', 'HuggingFace', 'NLP', 'PyTorch'],
+            features: [
+                'Fine-tuning BART-large-CNN for dialogue summarization',
+                'Comparative analysis of three transformer architectures',
+                'Custom evaluation metrics for dialogue quality',
+                'Data augmentation for improved performance',
+                'State-of-the-art ROUGE scores on SAMSum dataset'
+            ],
+            link: '#'
+        },
+        'penicillin': {
+            badge: 'Big Data',
+            title: 'Biopharmaceutical Manufacturing Analysis',
+            description: 'Conducted big data analysis using Hadoop and PySpark on Databricks to optimize penicillin production settings. Utilized Hadoop for distributed storage and PySpark for in-memory data processing to handle large-scale manufacturing datasets. The project focused on identifying key parameters affecting yield and optimizing the production process for efficiency.',
+            metrics: [
+                { value: 'Big Data', label: 'Scale' },
+                { value: 'PySpark', label: 'Processing' },
+                { value: 'Hadoop', label: 'Storage' }
+            ],
+            technologies: ['Big Data', 'PySpark', 'Hadoop', 'MapReduce', 'Databricks Products', 'Big Data Analytics'],
+            features: [
+                'Conducted big data analysis using Hadoop and PySpark',
+                'Optimized penicillin production settings',
+                'Utilized Hadoop for distributed storage',
+                'Implemented PySpark for in-memory data processing',
+                'Analyzed large-scale manufacturing datasets'
+            ],
+            link: '#'
+        }
+    };
+
+    const modal = document.getElementById('projectModal');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+    const modalOverlay = document.querySelector('.modal-overlay');
+
+    // Open modal when clicking on project card
+    document.querySelectorAll('.project-card-mini').forEach(card => {
+        card.addEventListener('click', function () {
+            const projectId = this.getAttribute('data-project');
+            const project = projectData[projectId];
+
+            if (project) {
+                // Build modal content
+                let metricsHtml = project.metrics.map(m =>
+                    `<div class="modal-metric">
+                        <span class="modal-metric-value">${m.value}</span>
+                        <span class="modal-metric-label">${m.label}</span>
+                    </div>`
+                ).join('');
+
+                let techHtml = project.technologies.map(t =>
+                    `<span class="modal-tech-tag">${t}</span>`
+                ).join('');
+
+                let featuresHtml = project.features.map(f =>
+                    `<li>${f}</li>`
+                ).join('');
+
+                modalBody.innerHTML = `
+                    <div class="modal-header">
+                        <span class="modal-badge">${project.badge}</span>
+                        <h2 class="modal-title">${project.title}</h2>
+                        <p class="modal-description">${project.description}</p>
+                    </div>
+                    
+                    <div class="modal-metrics">${metricsHtml}</div>
+                    
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">Technologies Used</h3>
+                        <div class="modal-tech-tags">${techHtml}</div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">Key Features</h3>
+                        <ul class="modal-features">${featuresHtml}</ul>
+                    </div>
+                    
+                    <a href="${project.link}" class="modal-link" target="_blank">
+                        View Project on GitHub
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                `;
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// Typing effect for hero title
+function initTypingEffect() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.borderRight = '3px solid var(--cyan-accent)';
+
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Remove cursor after typing is complete
+                setTimeout(() => {
+                    heroTitle.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+
+        // Start typing effect after initial animation
+        setTimeout(typeWriter, 800);
+    }
+}
+
+// Floating icons animation
+function initFloatingIcons() {
+    const floatingIcons = document.querySelectorAll('.floating-icon');
+
+    floatingIcons.forEach((icon, index) => {
+        // Add random floating movement
+        setInterval(() => {
+            const randomX = (Math.random() - 0.5) * 20;
+            const randomY = (Math.random() - 0.5) * 20;
+
+            icon.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }, 3000 + (index * 1000));
+    });
+}
+
+// Contact form interactions
+function initContactInteractions() {
+    const contactLinks = document.querySelectorAll('.contact-link');
+
+    contactLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.marginLeft = '-10px';
+            ripple.style.marginTop = '-10px';
+
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// Add CSS for ripple effect
+function addRippleCSS() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Navigation active state
+function initNavigationState() {
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
+            if (window.pageYOffset >= sectionTop - 200) {
+                currentSection = section.getAttribute('id');
             }
         });
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
+            if (link.getAttribute('href').substring(1) === currentSection) {
                 link.classList.add('active');
             }
         });
     });
+}
 
-    // Add active class style to navigation
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        .nav-links a.active {
-            color: var(--accent);
-        }
-    `;
-    document.head.appendChild(style);
+// Theme transition effect
+function initThemeTransition() {
+    document.body.style.transition = 'all 0.3s ease';
+}
 
-    // Project image fallback handling
-    document.querySelectorAll('.project-image img').forEach(img => {
-        img.addEventListener('error', function() {
-            this.src = 'placeholder.jpg';
-            this.alt = 'Project Image';
+// Performance optimization: Throttle scroll events
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Simple cursor glow effect (faster response)
+function initCursorGlow() {
+    const cursorGlow = document.getElementById('cursorGlow');
+
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+
+    // Track mouse movement
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorGlow.style.opacity = '1';
+    });
+
+    // Smooth glow movement with faster speed
+    function animateGlow() {
+        const speed = 0.35; // Increased from 0.15 for faster response
+
+        glowX += (mouseX - glowX) * speed;
+        glowY += (mouseY - glowY) * speed;
+
+        cursorGlow.style.left = glowX - 20 + 'px';
+        cursorGlow.style.top = glowY - 20 + 'px';
+
+        requestAnimationFrame(animateGlow);
+    }
+
+    animateGlow();
+
+    // Hide glow when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursorGlow.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+        cursorGlow.style.opacity = '1';
+    });
+
+    // Enhanced glow on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .cta-button, .contact-link, .project-card, .skill-tag');
+
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorGlow.style.transform = 'scale(1.5)';
+            cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 212, 255, 0.25) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%)';
+        });
+
+        el.addEventListener('mouseleave', () => {
+            cursorGlow.style.transform = 'scale(1)';
+            cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%)';
         });
     });
+}
+
+// Experience Modal System
+function initExperienceModals() {
+    const modal = document.getElementById('experienceModal');
+    const modalBody = document.getElementById('experienceModalBody');
+    const modalClose = document.getElementById('experienceModalClose');
+    const modalOverlay = modal.querySelector('.modal-overlay');
+
+    // Open modal when clicking on experience card
+    document.querySelectorAll('.experience-card').forEach(card => {
+        card.addEventListener('click', function () {
+            // Extract data from the card
+            const logo = this.querySelector('.company-logo').outerHTML;
+            const title = this.querySelector('.job-title').textContent;
+            const company = this.querySelector('.company').textContent;
+            const duration = this.querySelector('.duration').textContent;
+            const description = this.querySelector('.job-description').textContent;
+            const metrics = this.querySelector('.impact-metrics').outerHTML;
+            const details = this.querySelector('.experience-details').innerHTML;
+            const techTags = this.querySelector('.tech-tags').outerHTML;
+
+            // Build modal content
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                        ${logo}
+                        <div>
+                            <h2 class="modal-title" style="margin-bottom: 5px;">${title}</h2>
+                            <p class="company" style="margin-bottom: 5px;">${company}</p>
+                            <p class="duration">${duration}</p>
+                        </div>
+                    </div>
+                    <p class="modal-description">${description}</p>
+                </div>
+                
+                <div class="modal-metrics" style="margin-top: 20px; margin-bottom: 30px;">
+                    ${metrics}
+                </div>
+                
+                <div class="modal-section">
+                    <div class="experience-details-content">
+                        ${details}
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Technologies Used</h3>
+                    ${techTags}
+                </div>
+            `;
+
+            // Fix styles for injected content
+            const injectedMetrics = modalBody.querySelector('.impact-metrics');
+            if (injectedMetrics) {
+                injectedMetrics.style.background = 'transparent';
+                injectedMetrics.style.border = 'none';
+                injectedMetrics.style.padding = '0';
+                injectedMetrics.style.margin = '0';
+            }
+
+            // Add specific styles for the details list in modal
+            const detailsList = modalBody.querySelector('ul');
+            if (detailsList) {
+                detailsList.classList.add('modal-features');
+            }
+
+            const techContainer = modalBody.querySelector('.tech-tags');
+            if (techContainer) {
+                techContainer.classList.add('modal-tech-tags');
+                techContainer.style.marginTop = '0';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// Initialize all functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all components
+    initParticles();
+    initSmoothScroll();
+    animateCounters();
+    initScrollAnimations();
+    initHeaderScroll();
+    initParallax();
+    initDownloadResume();
+    initSkillTags();
+    initProjectCards();
+    initFloatingIcons();
+    initContactInteractions();
+    addRippleCSS();
+    initNavigationState();
+    initThemeTransition();
+    initCursorGlow();
+    initExperienceModals();
+    initProjectModals();
+
+    // Optional: Add typing effect (uncomment if desired)
+    // initTypingEffect();
+
+    console.log('Portfolio loaded successfully! 🚀');
 });
 
-// Typing animation for hero section (optional enhancement)
-const heroTitle = document.querySelector('.hero-title');
-if (heroTitle) {
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
-    
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            heroTitle.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    };
-    
-    // Uncomment to enable typing animation
-    // typeWriter();
-}
+// Add some easter eggs
+let clickCount = 0;
+document.querySelector('.brand').addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 5) {
+        console.log('🎉 You found the easter egg! Welcome to my portfolio!');
+        clickCount = 0;
+    }
+});
 
-// Replace the existing setupProjectsNavigation function with this enhanced version
+// Handle window resize
+window.addEventListener('resize', throttle(() => {
+    // Reinitialize particles on resize
+    const particleContainer = document.getElementById('particles');
+    particleContainer.innerHTML = '';
+    initParticles();
+}, 250));
 
-function setupProjectsNavigation() {
-    const projectsContainer = document.getElementById('projects-container');
-    const scrollLeftBtn = document.getElementById('scroll-left');
-    const scrollRightBtn = document.getElementById('scroll-right');
-    
-    if (!projectsContainer || !scrollLeftBtn || !scrollRightBtn) return;
-    
-    const projectCards = document.querySelectorAll('.project-card');
-    const cardWidth = projectCards.length > 0 ? projectCards[0].offsetWidth + 32 : 0; // Width + gap
-    
-    // Clone project cards for infinite scroll effect
-    function setupInfiniteScroll() {
-        // Clone the first few cards and add to the end
-        projectCards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            clone.classList.add('cloned-card');
-            projectsContainer.appendChild(clone);
-        });
+// Add keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        // Close any modals or overlays
+        document.activeElement.blur();
     }
-    
-    // Set up scroll functionality
-    function handleScroll(direction) {
-        if (!projectsContainer) return;
-        
-        const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
-        const currentScroll = projectsContainer.scrollLeft;
-        
-        projectsContainer.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-        
-        // Check for infinite scroll reset
-        setTimeout(() => {
-            // If scrolled to the end, jump to the beginning
-            if (direction === 'right' && 
-                projectsContainer.scrollLeft + projectsContainer.clientWidth >= 
-                projectsContainer.scrollWidth - 50) {
-                
-                // Disable smooth scrolling temporarily
-                projectsContainer.style.scrollBehavior = 'auto';
-                projectsContainer.scrollLeft = 0;
-                
-                // Re-enable smooth scrolling
-                setTimeout(() => {
-                    projectsContainer.style.scrollBehavior = 'smooth';
-                }, 50);
-            }
-            
-            // If scrolled to the beginning, jump to the end of original cards
-            if (direction === 'left' && projectsContainer.scrollLeft <= 0) {
-                const originalCardsWidth = cardWidth * projectCards.length;
-                
-                // Disable smooth scrolling temporarily
-                projectsContainer.style.scrollBehavior = 'auto';
-                projectsContainer.scrollLeft = originalCardsWidth;
-                
-                // Re-enable smooth scrolling
-                setTimeout(() => {
-                    projectsContainer.style.scrollBehavior = 'smooth';
-                }, 50);
-            }
-        }, 500);
-    }
-    
-    // Add event listeners
-    scrollLeftBtn.addEventListener('click', () => handleScroll('left'));
-    scrollRightBtn.addEventListener('click', () => handleScroll('right'));
-    
-    // Set up auto-scroll
-    let autoScrollInterval;
-    
-    function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            handleScroll('right');
-        }, 8000);
-    }
-    
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-    
-    // Initialize
-    setupInfiniteScroll();
-    startAutoScroll();
-    
-    // Pause auto-scroll on interaction
-    projectsContainer.addEventListener('mouseenter', stopAutoScroll);
-    projectsContainer.addEventListener('mouseleave', startAutoScroll);
-    projectsContainer.addEventListener('touchstart', stopAutoScroll);
-    projectsContainer.addEventListener('touchend', startAutoScroll);
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        const updatedCardWidth = projectCards.length > 0 ? projectCards[0].offsetWidth + 32 : 0;
-        if (updatedCardWidth !== cardWidth && updatedCardWidth > 0) {
-            // Reset the scroll position
-            projectsContainer.scrollLeft = 0;
-        }
-    });
-}
-// Enhanced interactive bubble effect
-function setupInteractiveBubbles() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    
-    const bubbleCount = 12; // Fewer bubbles for subtlety
-    const bubbles = [];
-    const colors = [
-        'rgba(6, 182, 212, 0.08)',   // Accent color
-        'rgba(59, 130, 246, 0.08)',  // Primary color
-        'rgba(14, 165, 233, 0.08)',  // Accent secondary
-        'rgba(16, 185, 129, 0.08)'   // Success color
+});
+
+// Preload images for better performance
+function preloadImages() {
+    const imageUrls = [
+        // Add any image URLs you want to preload
+        // 'path/to/your/profile-image.jpg'
     ];
-    
-    // Create regular bubbles
-    for (let i = 0; i < bubbleCount; i++) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        
-        // Randomize bubble size
-        const size = Math.random() * 60 + 30; // 30-90px
-        bubble.style.width = `${size}px`;
-        bubble.style.height = `${size}px`;
-        
-        // Randomize initial position
-        const posX = Math.random() * 90 + 5; // 5-95%
-        const posY = Math.random() * 90 + 5; // 5-95%
-        bubble.style.left = `${posX}%`;
-        bubble.style.top = `${posY}%`;
-        
-        // Apply random color
-        const colorIndex = Math.floor(Math.random() * colors.length);
-        bubble.style.background = colors[colorIndex];
-        
-        // Much lower opacity for subtlety
-        const opacity = Math.random() * 0.15 + 0.05; // 0.05-0.2
-        bubble.style.opacity = opacity;
-        
-        // Add subtle border and blur
-        bubble.style.border = '1px solid rgba(255, 255, 255, 0.15)';
-        bubble.style.backdropFilter = 'blur(1px)';
-        
-        // Randomize animation
-        const animationDuration = Math.random() * 20 + 40; // 40-60s very slow
-        const animationDelay = Math.random() * 5;
-        const animationType = Math.random() > 0.5 ? 'float-bubble' : 'float-bubble-alt';
-        bubble.style.animation = `${animationType} ${animationDuration}s ease-in-out ${animationDelay}s infinite`;
-        
-        // Store initial positions and other properties
-        bubble.dataset.initialX = posX;
-        bubble.dataset.initialY = posY;
-        bubble.dataset.size = size;
-        
-        hero.appendChild(bubble);
-        bubbles.push(bubble);
-    }
-    
-    // Create 2 really big bubbles
-    for (let i = 0; i < 2; i++) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble', 'big-bubble');
-        
-        // Very large size
-        const size = (i === 0) ? 280 : 350; // Two different sizes for the big bubbles
-        bubble.style.width = `${size}px`;
-        bubble.style.height = `${size}px`;
-        
-        // Position on opposite sides
-        const posX = (i === 0) ? 15 : 80;
-        const posY = (i === 0) ? 70 : 30;
-        bubble.style.left = `${posX}%`;
-        bubble.style.top = `${posY}%`;
-        
-        // Apply colors - use accent for first, primary for second
-        const colorIndex = (i === 0) ? 0 : 1;
-        bubble.style.background = colors[colorIndex];
-        
-        // Extra low opacity for big bubbles
-        const opacity = 0.06;
-        bubble.style.opacity = opacity;
-        
-        // Add subtle border and blur
-        bubble.style.border = '1px solid rgba(255, 255, 255, 0.1)';
-        bubble.style.backdropFilter = 'blur(1px)';
-        
-        // Slower animation for big bubbles
-        const animationDuration = 80 + (i * 20); // 80s for first, 100s for second
-        const animationDelay = i * 5;
-        const animationType = (i === 0) ? 'float-bubble' : 'float-bubble-alt';
-        bubble.style.animation = `${animationType} ${animationDuration}s ease-in-out ${animationDelay}s infinite`;
-        
-        // Store initial positions and other properties
-        bubble.dataset.initialX = posX;
-        bubble.dataset.initialY = posY;
-        bubble.dataset.size = size;
-        
-        hero.appendChild(bubble);
-        bubbles.push(bubble);
-    }
-    
-    // Add mouse interaction
-    hero.addEventListener('mousemove', (e) => {
-        // Get mouse position relative to hero section
-        const rect = hero.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const heroWidth = rect.width;
-        const heroHeight = rect.height;
-        
-        // Move bubbles based on mouse position
-        bubbles.forEach(bubble => {
-            const bubbleSize = parseFloat(bubble.dataset.size);
-            const initialX = parseFloat(bubble.dataset.initialX);
-            const initialY = parseFloat(bubble.dataset.initialY);
-            
-            // Calculate distance from mouse
-            const bubbleX = initialX * heroWidth / 100;
-            const bubbleY = initialY * heroHeight / 100;
-            const deltaX = mouseX - bubbleX;
-            const deltaY = mouseY - bubbleY;
-            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-            
-            // Move bubble away from cursor with intensity based on distance
-            // The effect is stronger for closer bubbles
-            const maxDistance = Math.max(heroWidth, heroHeight) / 2;
-            const intensity = Math.max(0, 1 - distance / maxDistance) * 15; // Reduced intensity
-            
-            // Direction away from mouse
-            const directionX = deltaX !== 0 ? -deltaX / Math.abs(deltaX) : 0;
-            const directionY = deltaY !== 0 ? -deltaY / Math.abs(deltaY) : 0;
-            
-            // Different movement behavior for big bubbles vs regular bubbles
-            if (bubble.classList.contains('big-bubble')) {
-                // Big bubbles move very subtly and slower
-                const bigBubbleScale = 0.15; // Much smaller movement for big bubbles
-                const translateX = directionX * intensity * bigBubbleScale;
-                const translateY = directionY * intensity * bigBubbleScale;
-                
-                // Extract current transform from animation
-                const currentAnimationTransform = window.getComputedStyle(bubble).getPropertyValue('transform');
-                
-                // Add subtle scale effect for big bubbles when mouse is near
-                const scaleFactor = Math.max(0.98, 1 - (intensity * 0.001));
-                
-                bubble.style.transform = `${currentAnimationTransform} translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
-            } else {
-                // Regular bubbles move more
-                // Scale movement based on bubble size (smaller bubbles move more)
-                const sizeScale = (90 - bubbleSize) / 100;
-                
-                // Apply transform
-                const translateX = directionX * intensity * sizeScale;
-                const translateY = directionY * intensity * sizeScale;
-                
-                bubble.style.transform = `translate(${translateX}px, ${translateY}px)`;
-            }
-        });
-    });
-    
-    // Reset bubbles when mouse leaves
-    hero.addEventListener('mouseleave', () => {
-        bubbles.forEach(bubble => {
-            bubble.style.transform = 'translate(0, 0)';
-        });
-    });
-    
-    // Add click effect - subtle ripple instead of splash bubbles
-    hero.addEventListener('click', (e) => {
-        // Get click position
-        const rect = hero.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const clickY = e.clientY - rect.top;
-        
-        // Create ripple effect
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple');
-        
-        // Position at click point
-        ripple.style.left = `${clickX}px`;
-        ripple.style.top = `${clickY}px`;
-        
-        // Randomize color slightly
-        const colorIndex = Math.floor(Math.random() * colors.length);
-        const rippleColor = colors[colorIndex].replace('0.08', '0.03'); // Even more transparent
-        ripple.style.borderColor = rippleColor;
-        
-        // Add to DOM
-        hero.appendChild(ripple);
-        
-        // Remove after animation completes
-        setTimeout(() => {
-            ripple.remove();
-        }, 1500);
-        
-        // Also subtly pulse the nearest big bubble
-        let closestBigBubble = null;
-        let closestDistance = Infinity;
-        
-        bubbles.forEach(bubble => {
-            if (bubble.classList.contains('big-bubble')) {
-                const bubbleX = parseFloat(bubble.dataset.initialX) * rect.width / 100;
-                const bubbleY = parseFloat(bubble.dataset.initialY) * rect.height / 100;
-                const distance = Math.sqrt(
-                    Math.pow(clickX - bubbleX, 2) + 
-                    Math.pow(clickY - bubbleY, 2)
-                );
-                
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestBigBubble = bubble;
-                }
-            }
-        });
-        
-        if (closestBigBubble) {
-            // Add a subtle pulse to the closest big bubble
-            closestBigBubble.classList.add('pulse');
-            
-            // Remove the pulse class after animation
-            setTimeout(() => {
-                closestBigBubble.classList.remove('pulse');
-            }, 1000);
-        }
+
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
     });
 }
 
-// Additional CSS styles to add to your style.css
-const bubbleStyles = `
-/* Enhanced Bubble Styles */
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-    z-index: 1;
-    pointer-events: none;
-    transition: transform 0.6s ease, background-color 0.3s ease;
-}
-
-/* Big bubble special styling */
-.bubble.big-bubble {
-    z-index: 0; /* Place behind other elements */
-    transform-origin: center;
-    transition: transform 1s ease;
-    will-change: transform;
-}
-
-/* Splash bubble effect */
-.bubble.splash {
-    position: absolute;
-    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-}
-
-/* Dark theme adjustments */
-[data-theme="dark"] .bubble {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@keyframes float-bubble {
-    0% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-    33% {
-        transform: translate(15px, -20px) rotate(2deg) scale(0.98);
-    }
-    66% {
-        transform: translate(-15px, 10px) rotate(-2deg) scale(1.02);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-}
-
-@keyframes float-bubble-alt {
-    0% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-    33% {
-        transform: translate(-20px, 5px) rotate(-1deg) scale(1.01);
-    }
-    66% {
-        transform: translate(10px, -10px) rotate(1deg) scale(0.99);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-}
-`;
+// Call preload on load
+window.addEventListener('load', preloadImages);

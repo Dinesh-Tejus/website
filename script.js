@@ -1,19 +1,4 @@
-// Animated background particles
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
-    particle.style.animationDelay = Math.random() * 5 + 's';
-    return particle;
-}
 
-function initParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 50; i++) {
-        container.appendChild(createParticle());
-    }
-}
 
 // Smooth scrolling for navigation
 function initSmoothScroll() {
@@ -518,59 +503,7 @@ function throttle(func, wait) {
     };
 }
 
-// Simple cursor glow effect (faster response)
-function initCursorGlow() {
-    const cursorGlow = document.getElementById('cursorGlow');
 
-    let mouseX = 0, mouseY = 0;
-    let glowX = 0, glowY = 0;
-
-    // Track mouse movement
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorGlow.style.opacity = '1';
-    });
-
-    // Smooth glow movement with faster speed
-    function animateGlow() {
-        const speed = 0.35; // Increased from 0.15 for faster response
-
-        glowX += (mouseX - glowX) * speed;
-        glowY += (mouseY - glowY) * speed;
-
-        cursorGlow.style.left = glowX - 20 + 'px';
-        cursorGlow.style.top = glowY - 20 + 'px';
-
-        requestAnimationFrame(animateGlow);
-    }
-
-    animateGlow();
-
-    // Hide glow when leaving window
-    document.addEventListener('mouseleave', () => {
-        cursorGlow.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-        cursorGlow.style.opacity = '1';
-    });
-
-    // Enhanced glow on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .cta-button, .contact-link, .project-card, .skill-tag');
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorGlow.style.transform = 'scale(1.5)';
-            cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 212, 255, 0.25) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%)';
-        });
-
-        el.addEventListener('mouseleave', () => {
-            cursorGlow.style.transform = 'scale(1)';
-            cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%)';
-        });
-    });
-}
 
 // Experience Modal System
 function initExperienceModals() {
@@ -668,7 +601,7 @@ function initExperienceModals() {
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
-    initParticles();
+
     initSmoothScroll();
     animateCounters();
     initScrollAnimations();
@@ -682,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addRippleCSS();
     initNavigationState();
     initThemeTransition();
-    initCursorGlow();
+
     initExperienceModals();
     initProjectModals();
 
@@ -704,10 +637,7 @@ document.querySelector('.brand').addEventListener('click', () => {
 
 // Handle window resize
 window.addEventListener('resize', throttle(() => {
-    // Reinitialize particles on resize
-    const particleContainer = document.getElementById('particles');
-    particleContainer.innerHTML = '';
-    initParticles();
+    // Reinitialize functions if needed
 }, 250));
 
 // Add keyboard navigation

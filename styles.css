@@ -5,63 +5,28 @@
 }
 
 :root {
-    --primary-navy: #0B1426;
-    --secondary-navy: #1A2B47;
-    --accent-blue: #2D4A78;
+    --primary-navy: #050A14;
+    --secondary-navy: #0F1C2E;
+    --accent-blue: #1E2D40;
     --highlight-blue: #4A90E2;
+    /* Gold transition */
     --cyan-accent: #00D4FF;
+    /* Classic Gold */
     --text-primary: #E8F4FF;
+    /* Cream/Off-white */
     --text-secondary: #B8D4F0;
+    /* Silver/Grey */
     --text-muted: #7A9CC6;
-    --gradient-primary: linear-gradient(135deg, #0B1426 0%, #1A2B47 50%, #2D4A78 100%);
+    --gradient-primary: linear-gradient(135deg, #050A14 0%, #0F1C2E 100%);
     --gradient-accent: linear-gradient(135deg, #4A90E2 0%, #00D4FF 100%);
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background: var(--gradient-primary);
+    background: var(--primary-navy);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
-}
-
-/* Canvas for cursor streak */
-#cursorStreak {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.8;
-}
-
-.cursor-glow {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: all 0.1s ease;
-    opacity: 0;
-    animation: pulseGlow 2s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
 }
 
 /* Animations */
@@ -181,26 +146,7 @@ body {
     transform: translateY(0);
 }
 
-/* Animated background particles */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: var(--cyan-accent);
-    border-radius: 50%;
-    animation: float 20s infinite linear;
-    opacity: 0.3;
-}
+/* Main content */
 
 /* Header */
 header {
@@ -223,12 +169,11 @@ header.scrolled {
 .brand {
     font-size: 28px;
     font-weight: bold;
+    letter-spacing: 2px;
     background: var(--gradient-accent);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -307,6 +252,7 @@ main {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -332,7 +278,7 @@ main {
 }
 
 .badge-primary {
-    background: rgba(0, 212, 255, 0.15);
+    background: rgba(0, 212, 255, 0.1);
     color: var(--cyan-accent);
     border: 1px solid rgba(0, 212, 255, 0.3);
 }

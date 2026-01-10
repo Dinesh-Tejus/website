@@ -497,9 +497,9 @@ main {
 }
 
 .project-card-mini:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     border-color: var(--cyan-accent);
-    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
 }
 
 .card-header-row {
@@ -634,8 +634,8 @@ main {
 .view-more-card:hover {
     background: rgba(0, 212, 255, 0.08);
     border-color: var(--cyan-accent);
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.1);
 }
 
 .view-more-link-wrapper {
@@ -701,9 +701,9 @@ main {
 }
 
 .highlight-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2.5px);
     border-color: var(--cyan-accent);
-    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 7px 15px rgba(0, 212, 255, 0.1);
 }
 
 .highlight-icon {
@@ -806,9 +806,9 @@ main {
 }
 
 .experience-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-5px) scale(1.01);
     border-color: var(--cyan-accent);
-    box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 12px 25px rgba(0, 212, 255, 0.1);
 }
 
 .experience-header {
@@ -837,8 +837,8 @@ main {
 }
 
 .experience-card:hover .company-logo {
-    transform: rotate(5deg) scale(1.1);
-    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.5);
+    transform: rotate(2.5deg) scale(1.05);
+    box-shadow: 0 7px 15px rgba(0, 212, 255, 0.3);
 }
 
 .company-logo.autodesk {
@@ -1015,12 +1015,24 @@ main {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+}
+
+@media (max-width: 1200px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .skill-category {
@@ -1033,9 +1045,9 @@ main {
 }
 
 .skill-category:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2.5px);
     border-color: var(--cyan-accent);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.05);
 }
 
 .skill-category h3 {
@@ -1148,9 +1160,9 @@ main {
 }
 
 .project-card-mini:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     border-color: var(--cyan-accent);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
     background: rgba(26, 43, 71, 0.5);
 }
 

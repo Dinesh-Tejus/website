@@ -98,33 +98,10 @@ function initParallax() {
 function initDownloadResume() {
     const downloadBtn = document.getElementById('downloadResume');
 
-    downloadBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // Add a loading state
-        const originalText = this.innerHTML;
-        this.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 6v6l4 2"></path>
-            </svg>
-            Preparing...
-        `;
-
-        // Simulate download preparation
-        setTimeout(() => {
-            // Create a mock PDF download
-            const link = document.createElement('a');
-            link.href = '#'; // Replace with actual resume PDF path
-            link.download = 'Tejus_Dinesh_Resume.pdf';
-
-            // For demo purposes, show an alert
-            alert('Resume download would start here. Please add your actual resume PDF to the project and update the href.');
-
-            // Reset button
-            downloadBtn.innerHTML = originalText;
-        }, 1500);
-    });
+    // Link is handled natively by the anchor tag href
+    if (downloadBtn) {
+        // No custom JS needed for Google Drive link
+    }
 }
 
 // Skill tag interaction
@@ -298,7 +275,7 @@ function initProjectModals() {
     const modal = document.getElementById('projectModal');
     const modalBody = document.getElementById('modalBody');
     const modalClose = document.getElementById('modalClose');
-    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalOverlay = modal ? modal.querySelector('.modal-overlay') : null;
 
     // Open modal when clicking on project card
     document.querySelectorAll('.project-card-mini').forEach(card => {

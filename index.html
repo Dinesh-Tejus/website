@@ -5,43 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tejus Dinesh - AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <div class="brand fade-in-up">TejusDinesh</div>
-        <nav>
-            <a href="#hero" class="fade-in-up" style="animation-delay: 0.1s">Home</a>
-            <a href="#experience" class="fade-in-up" style="animation-delay: 0.2s">Experience</a>
-            <a href="#skills" class="fade-in-up" style="animation-delay: 0.3s">Skills</a>
-            <a href="#projects" class="fade-in-up" style="animation-delay: 0.4s">Projects</a>
-            <a href="#contact" class="fade-in-up" style="animation-delay: 0.5s">Contact</a>
-        </nav>
+        <div class="header-inner">
+            <div class="brand fade-in-up">Tejus Dinesh</div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="#hero" class="fade-in-up">Home</a>
+                <a href="#experience" class="fade-in-up">Experience</a>
+                <a href="#skills" class="fade-in-up">Skills</a>
+                <a href="#projects" class="fade-in-up">Projects</a>
+                <a href="#contact" class="fade-in-up">Contact</a>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section id="hero" class="section hero">
             <div class="hero-content">
                 <h1 class="hero-title fade-in-up">AI Engineer & ML Specialist</h1>
-                <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s">Architecting Intelligent Systems at
+                <p class="hero-subtitle fade-in-up">Architecting Intelligent Systems at
                     Scale</p>
-                <div class="expertise-badges fade-in-up" style="animation-delay: 0.3s">
+                <div class="expertise-badges fade-in-up">
                     <span class="badge badge-primary">LLM Fine-tuning</span>
                     <span class="badge badge-primary">AI Agents</span>
                     <span class="badge badge-primary">RAG Systems</span>
                 </div>
-                <p class="hero-description fade-in-up" style="animation-delay: 0.4s">
-                    Specializing in advanced AI agent development, large language model optimization, and
-                    enterprise-scale ML systems.
-                    Expert in cutting-edge techniques including LoRA, ETHER+, and OFT fine-tuning, autonomous agent
-                    orchestration with LangGraph,
-                    and building production RAG systems with 75%+ accuracy. With an MS in Artificial
-                    Intelligence from Northeastern University, My primary focus is
-                    generative AI architectures and deep learning innovation.
+                <p class="hero-description fade-in-up">
+                    MS in Artificial Intelligence from Northeastern University.<br>
+                    Building production AI systems end-to-end — from fine-tuning LLMs (LoRA, ETHER+, OFT on
+                    Llama-3.2/3-8B) to deploying multi-agent orchestration with Agentic framrworks.
+                    Experienced with enterprise RAG pipelines achieving 75%+ accuracy, transformer
+                    implementations from scratch (GPT-2, BART, mT5), and machine unlearning research.
+
                 </p>
 
-                <div class="hero-actions fade-in-up" style="animation-delay: 0.6s">
+                <div class="hero-actions fade-in-up">
                     <a href="#contact" class="cta-button">Let's Connect</a>
                     <a href="https://drive.google.com/file/d/1pO48KxdeknQ4UCH2q3rb5w0uOcx2xCRf/view?usp=sharing"
                         target="_blank" class="download-resume" id="downloadResume">
@@ -55,26 +63,7 @@
                     </a>
                 </div>
 
-                <div class="stats fade-in-up" style="animation-delay: 0.8s">
-                    <div class="stat-item">
-                        <div class="stat-wrapper">
-                            <span class="stat-number counter" data-target="3.96">0</span>
-                        </div>
-                        <div class="stat-label">GPA</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-wrapper">
-                            <span class="stat-number counter" data-target="2">0</span><span class="stat-plus">+</span>
-                        </div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-wrapper">
-                            <span class="stat-number counter" data-target="10">0</span><span class="stat-plus">+</span>
-                        </div>
-                        <div class="stat-label">AI Projects</div>
-                    </div>
-                </div>
+
             </div>
 
             <div class="hero-image fade-in-right">
@@ -123,19 +112,17 @@
 
                     <div class="experience-body">
                         <p class="job-description">
-                            Engineered autonomous AI agents for high-volume email analysis processing 10,000+ messages
-                            daily.
-                            Developed advanced RAG-based chatbots achieving 75%+ accuracy using LangChain and vector
-                            databases.
-                            Built fully automated document processing pipelines with LLM-powered agents for 500-1,500
-                            page documents,
-                            implementing chain-of-thought reasoning and multi-agent orchestration with LangGraph.
+                            Developed advanced multi-agent RAG-based SQL chatbot achieving 75%+ accuracy using Autogen
+                            and knkowledge graphs using Neo4j.
+                            Built a fully automated document processing pipelines with LLM-powered agents for 500-1,500
+                            page documents' spec extractions.
+                            Engineered autonomous AI agents for high-volume email analysis processing daily messages.
                         </p>
 
                         <div class="impact-metrics">
                             <div class="metric-item">
-                                <div class="metric-value">10K+</div>
-                                <div class="metric-label">Daily Messages</div>
+                                <div class="metric-value">Agentic</div>
+                                <div class="metric-label">Frameworks</div>
                             </div>
                             <div class="metric-item">
                                 <div class="metric-value">75%+</div>
@@ -143,20 +130,20 @@
                             </div>
                             <div class="metric-item">
                                 <div class="metric-value">1,500</div>
-                                <div class="metric-label">Pages/Doc</div>
+                                <div class="metric-label">Pages/Doc processing</div>
                             </div>
                         </div>
 
                         <div class="experience-details" style="display: none;">
                             <h4>Key Achievements</h4>
                             <ul>
-                                <li>Designed and deployed multi-agent email classification system processing 10,000+
+                                <li>Designed and deployed multi-agent email classification system processing
                                     daily messages with 85%+ accuracy</li>
                                 <li>Developed RAG-based document Q&A system achieving 75%+ accuracy on complex technical
-                                    documents using LangChain and Pinecone vector database</li>
+                                    documents using Autogen and knowledge graphs using Neo4j</li>
                                 <li>Built automated document processing pipeline handling 500-1,500 page documents with
                                     LLM-powered extraction and summarization</li>
-                                <li>Implemented chain-of-thought reasoning and multi-agent orchestration using LangGraph
+                                <li>Implemented chain-of-thought reasoning and multi-agent orchestration
                                     for complex workflow automation</li>
                                 <li>Optimized LLM prompts and retrieval strategies, reducing API costs by 40% while
                                     maintaining accuracy</li>
@@ -180,6 +167,47 @@
                             <span class="tech-tag">OpenAI API</span>
                             <span class="tech-tag">RAG</span>
                             <span class="tech-tag">Vector DB</span>
+                        </div>
+
+                        <div class="view-details-hint">
+                            <span>Click to view details</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-card scroll-animate" data-expandable>
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <span>NEU</span>
+                        </div>
+                        <div class="experience-meta">
+                            <h3 class="job-title">Graduate Teaching Assistant</h3>
+                            <p class="company">Northeastern University, Khoury College of Computer Science • Boston, MA
+                            </p>
+                            <p class="duration">CS6120 Natural Language Processing</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-body">
+                        <p class="job-description">
+                            Teaching Assistant for CS6120 Natural Language Processing, supporting students in
+                            understanding transformer architectures, attention mechanisms, fine-tuning techniques,
+                            and NLP pipeline development. Conducted office hours, graded assignments, and assisted
+                            with course material covering topics from tokenization to large language models.
+                        </p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">HuggingFace</span>
+                            <span class="tech-tag">Teaching</span>
                         </div>
 
                         <div class="view-details-hint">
@@ -352,13 +380,51 @@
 
             <div class="research-banner scroll-animate">
                 <div class="research-content">
-                    <h3>🔬 AI Research & Innovation</h3>
+                    <h3>AI Research & Innovation</h3>
                     <p>Conducting cutting-edge research in LLM fine-tuning optimization, machine unlearning, and
                         multi-agent systems</p>
                 </div>
             </div>
 
             <div class="projects-grid">
+                <div class="project-card-mini scroll-animate" data-project="darwin">
+                    <div class="card-header-row">
+                        <div class="project-badge">VS Code Extension</div>
+                        <a href="https://github.com/Dinesh-Tejus/Darwin" target="_blank" class="project-github-link"
+                            onclick="event.stopPropagation()" aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-title-row">
+                        <h3 class="project-title-mini">Darwin: Legacy Package Detector</h3>
+                    </div>
+                    <p class="project-summary">AI-driven VS Code extension that flags unmaintained packages in real-time
+                        and automates migrations using Gemini and Tavily.</p>
+                    <div class="tech-tags-mini">
+                        <span>Gemini API</span>
+                        <span>Tavily</span>
+                        <span>TypeScript</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">AI Analysis</span>
+                        <span class="mini-metric">Auto-Migration</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="project-card-mini scroll-animate" data-project="llm-finetuning">
                     <div class="card-header-row">
                         <div class="project-badge">Featured Research</div>
@@ -376,16 +442,16 @@
 
                         <h3 class="project-title-mini">LLM Fine-tuning Comparison Study</h3>
                     </div>
-                    <p class="project-summary">Comprehensive evaluation of LoRA, OFT, and ETHER+ fine-tuning
-                        methodologies achieving 73.9% ROUGE-1 score.</p>
+                    <p class="project-summary">ETHER+ achieved 92% parameter reduction (344K vs 4M) while maintaining
+                        competitive ROUGE-1 of 0.628 on Llama-3.2-3B across a 3-method PEFT comparison.</p>
                     <div class="tech-tags-mini">
-                        <span>PyTorch</span>
                         <span>LoRA</span>
-                        <span>Transformers</span>
+                        <span>ETHER+</span>
+                        <span>Llama-3.2</span>
                     </div>
                     <div class="mini-metrics">
                         <span class="mini-metric">73.9% ROUGE-1</span>
-                        <span class="mini-metric">92% Efficiency</span>
+                        <span class="mini-metric">92% Fewer Params</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -415,16 +481,16 @@
 
                         <h3 class="project-title-mini">BlindSight: AI File Assistant</h3>
                     </div>
-                    <p class="project-summary">Voice-controlled platform with LLaMA-70B achieving 95% speech accuracy
-                        and 85% task success.</p>
+                    <p class="project-summary">Voice-driven file navigation integrating Whisper CPP speech-to-text with
+                        Llama-70B via Groq API, achieving 95% speech accuracy for visually impaired users.</p>
                     <div class="tech-tags-mini">
                         <span>LLaMA-70B</span>
-                        <span>Speech Rec</span>
-                        <span>Python</span>
+                        <span>Whisper</span>
+                        <span>Groq API</span>
                     </div>
                     <div class="mini-metrics">
-                        <span class="mini-metric">95% Speech</span>
-                        <span class="mini-metric">85% Success</span>
+                        <span class="mini-metric">95% Accuracy</span>
+                        <span class="mini-metric">70B LLM</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -453,16 +519,16 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-summary">Implementation of selective knowledge removal for LLaMA-3-8B using Sparse
-                        Autoencoders and LoRA.</p>
+                    <p class="project-summary">Selective knowledge removal from Llama-3-8B comparing LoRA, Sparse
+                        Autoencoders, and Guardrailing — LoRA drove target perplexity from 24.6 to 5.7×10¹².</p>
                     <div class="tech-tags-mini">
-                        <span>LLaMA-3</span>
-                        <span>PyTorch</span>
+                        <span>LLaMA-3-8B</span>
+                        <span>SAE</span>
                         <span>LoRA</span>
                     </div>
                     <div class="mini-metrics">
-                        <span class="mini-metric">LLaMA-3</span>
-                        <span class="mini-metric">Privacy AI</span>
+                        <span class="mini-metric">8B Model</span>
+                        <span class="mini-metric">3 Methods</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -490,16 +556,16 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-summary">LSTM Encoder-Decoder with attention for Kannada-English translation, 15%
-                        improvement over baseline.</p>
+                    <p class="project-summary">Encoder-decoder with attention mechanism and fine-tuned mT5 on 150K
+                        parallel sentences, achieving 15% BLEU improvement for Kannada-English translation.</p>
                     <div class="tech-tags-mini">
-                        <span>LSTM</span>
-                        <span>MT5</span>
-                        <span>TensorFlow</span>
+                        <span>mT5</span>
+                        <span>Attention</span>
+                        <span>Seq2Seq</span>
                     </div>
                     <div class="mini-metrics">
-                        <span class="mini-metric">LSTM</span>
-                        <span class="mini-metric">MT5</span>
+                        <span class="mini-metric">15% BLEU Gain</span>
+                        <span class="mini-metric">150K Pairs</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -528,16 +594,16 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-summary">Decoder-only Transformer from scratch with 134M+ parameters, pre-trained
-                        on WikiText dataset.</p>
+                    <p class="project-summary">Decoder-only transformer (260M params) implemented from scratch achieving
+                        perplexity of 279.8 on WikiText, with greedy, top-k, and nucleus sampling.</p>
                     <div class="tech-tags-mini">
                         <span>GPT-2</span>
                         <span>PyTorch</span>
                         <span>Transformers</span>
                     </div>
                     <div class="mini-metrics">
-                        <span class="mini-metric">134M Params</span>
-                        <span class="mini-metric">From Scratch</span>
+                        <span class="mini-metric">260M Params</span>
+                        <span class="mini-metric">279.8 Perplexity</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -566,16 +632,16 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-summary">Fine-tuned BART-large-CNN achieving ROUGE-1: 0.419 and ROUGE-2: 0.216 on
-                        SAMSum dataset.</p>
+                    <p class="project-summary">Fine-tuned BART-large-CNN with FP16 mixed precision on 14.7K dialogues,
+                        achieving ROUGE-1: 0.419 and ROUGE-2: 0.216 on SAMSum.</p>
                     <div class="tech-tags-mini">
                         <span>BART</span>
                         <span>HuggingFace</span>
-                        <span>NLP</span>
+                        <span>FP16</span>
                     </div>
                     <div class="mini-metrics">
-                        <span class="mini-metric">BART</span>
-                        <span class="mini-metric">0.419 ROUGE</span>
+                        <span class="mini-metric">0.419 ROUGE-1</span>
+                        <span class="mini-metric">14.7K Dialogues</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>
@@ -604,8 +670,8 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-summary">Big data analysis using Hadoop and PySpark on Databricks to optimize
-                        penicillin production settings.</p>
+                    <p class="project-summary">Distributed analysis of large-scale manufacturing data using PySpark and
+                        Hadoop on Databricks to identify yield-critical production parameters.</p>
                     <div class="tech-tags-mini">
                         <span>PySpark</span>
                         <span>Hadoop</span>
@@ -614,6 +680,44 @@
                     <div class="mini-metrics">
                         <span class="mini-metric">Big Data</span>
                         <span class="mini-metric">Analytics</span>
+                    </div>
+                    <div class="view-details-hint">
+                        <span>Click to view details</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="project-card-mini scroll-animate" data-project="loan-payback">
+                    <div class="card-header-row">
+                        <div class="project-title-row">
+
+                            <h3 class="project-title-mini" style="margin-bottom: 0;">Predicting Loan Payback</h3>
+                        </div>
+                        <a href="#" target="_blank" class="project-github-link" onclick="event.stopPropagation()"
+                            aria-label="View on GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-summary">Level 2 stacked ensemble with LightGBM meta-model and isotonic
+                        calibration, achieving 0.923 ROC-AUC on 594K-record Kaggle competition dataset.</p>
+                    <div class="tech-tags-mini">
+                        <span>XGBoost</span>
+                        <span>LightGBM</span>
+                        <span>SHAP</span>
+                    </div>
+                    <div class="mini-metrics">
+                        <span class="mini-metric">0.923 ROC-AUC</span>
+                        <span class="mini-metric">Ensemble</span>
                     </div>
                     <div class="view-details-hint">
                         <span>Click to view details</span>

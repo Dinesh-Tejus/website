@@ -1,5 +1,4 @@
 
-
 // Smooth scrolling for navigation
 function initSmoothScroll() {
     document.querySelectorAll('nav a').forEach(anchor => {
@@ -82,179 +81,204 @@ function initHeaderScroll() {
     });
 }
 
-// Parallax effect for background
-function initParallax() {
+// Navigation active state
+function initNavigationState() {
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
+
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('.bg-animation');
-        if (parallax) {
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        }
-    });
-}
+        let currentSection = '';
 
-// Download resume functionality
-function initDownloadResume() {
-    const downloadBtn = document.getElementById('downloadResume');
-
-    // Link is handled natively by the anchor tag href
-    if (downloadBtn) {
-        // No custom JS needed for Google Drive link
-    }
-}
-
-// Skill tag interaction
-function initSkillTags() {
-    const skillTags = document.querySelectorAll('.skill-tag');
-
-    skillTags.forEach(tag => {
-        tag.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-2px) scale(1.05)';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.pageYOffset >= sectionTop - 200) {
+                currentSection = section.getAttribute('id');
+            }
         });
 
-        tag.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0) scale(1)';
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === currentSection) {
+                link.classList.add('active');
+            }
         });
     });
 }
 
-// Project cards interaction
-function initProjectCards() {
-    const projectCards = document.querySelectorAll('.project-card-mini');
+// Mobile navigation toggle
+function initMobileNav() {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('nav');
 
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-8px)';
-        });
+    if (!toggle || !nav) return;
 
-        card.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0)';
+    toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close nav on link click
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
         });
     });
+}
+
+// Performance optimization: Throttle scroll events
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Project Modal System
 function initProjectModals() {
     const projectData = {
+        'darwin': {
+            badge: 'VS Code Extension',
+            title: 'Darwin: Legacy Package Detector',
+            description: 'Intelligent VS Code extension that scans Python and JavaScript/TypeScript imports for deprecated or unmaintained packages. It combines web search (via Tavily) with AI analysis (via Google Gemini) to identify package health and provides one-click automated migration suggestions with diff previews.',
+            metrics: [
+                { value: 'AI-Powered', label: 'Analysis' },
+                { value: '1-Click', label: 'Migration' },
+                { value: 'Polyglot', label: 'PY/JS/TS' }
+            ],
+            technologies: ['VS Code API', 'Google Gemini', 'Tavily Search', 'TypeScript', 'Node.js', 'Esbuild'],
+            features: [
+                'Automatic deprecation detection via AI-powered web search verification',
+                'Inline diagnostics, hover information, and strikethrough decorations for legacy imports',
+                'One-click automated migration to modern alternatives with built-in undo support',
+                'Workspace-wide scanning and local caching for performance and cost efficiency',
+                'Customizable confidence thresholds and ignore lists'
+            ],
+            link: 'https://github.com/Dinesh-Tejus/Darwin'
+        },
         'llm-finetuning': {
             badge: 'Featured Research',
             title: 'LLM Fine-tuning Comparison Study',
-            description: 'Comprehensive evaluation of LoRA, OFT, and ETHER+ fine-tuning methodologies achieving 73.9% ROUGE-1 score. Demonstrated ETHER+\'s superior parameter efficiency with only 344K trainable parameters versus 4.2M for LoRA, while maintaining competitive performance. Implemented custom attention mechanisms and analyzed trade-offs between model capacity and training efficiency.',
+            description: 'Systematic evaluation of LoRA, OFT, and ETHER+ on Llama-3.2-3B-Instruct. LoRA achieved highest ROUGE-1 (0.7385) with ~4M params; ETHER+ achieved 0.6278 with only 344K params and 30% GPU utilization vs 80% for LoRA/OFT. Trained on Stanford Alpaca dataset. Demonstrated performance-efficiency trade-offs across methods.',
             metrics: [
-                { value: '73.9%', label: 'ROUGE-1 Score' },
-                { value: '92%', label: 'Parameter Reduction' },
-                { value: '344K', label: 'Trainable Params' }
+                { value: '0.739', label: 'ROUGE-1' },
+                { value: '92%', label: 'Param Reduction' },
+                { value: '344K', label: 'ETHER+ Params' }
             ],
-            technologies: ['PyTorch', 'HuggingFace', 'LoRA', 'ETHER+', 'OFT', 'Transformers'],
+            technologies: ['PyTorch', 'Llama-3.2-3B', 'LoRA', 'OFT', 'ETHER+', 'HuggingFace', 'Stanford Alpaca'],
             features: [
-                'Comparative analysis of three state-of-the-art fine-tuning methods',
-                'Custom implementation of ETHER+ optimization algorithm',
-                'Comprehensive benchmarking on multiple NLP tasks',
-                'Parameter efficiency analysis and memory profiling',
-                'Detailed ablation studies on attention mechanisms'
+                'LoRA: 0.7385 ROUGE-1 with ~4M trainable parameters',
+                'ETHER+: 344K parameters with 30% GPU utilization vs 80% for others',
+                'OFT: 0.7176 ROUGE-1 with orthogonal fine-tuning via Cayley parameterization',
+                'Baseline improvement from 0.2467 to 0.7385 ROUGE-1 (3x gain)',
+                'Robustness analysis across learning rates and hyperparameter configurations'
             ],
             link: 'https://github.com/Dinesh-Tejus/Comparing-LORA-OFT-ETHER'
         },
         'blindsight': {
             badge: 'AI Accessibility',
             title: 'BlindSight: AI-Powered File Assistant',
-            description: 'Voice-controlled file management platform for visually impaired users with 95% speech recognition accuracy. Integrated LLaMA-70B with custom in-context learning strategies achieving 85% task completion accuracy. Implemented advanced prompt engineering and few-shot learning to handle complex file operations through natural language.',
+            description: 'High-fidelity prototype for voice-controlled file system navigation for the visually impaired. Integrated OpenAI Whisper CPP (Tiny model) for speech-to-text with Llama-1:70B via Groq API for natural language command interpretation. Implemented multi-threaded document reading, space-bar interrupt control, and pyttsx3 text-to-speech. Achieved 95% speech recognition accuracy and 85% task success rate across file operations.',
             metrics: [
                 { value: '95%', label: 'Speech Accuracy' },
-                { value: '85%', label: 'Task Success Rate' },
-                { value: '70B', label: 'Model Parameters' }
+                { value: '85%', label: 'Task Success' },
+                { value: '70B', label: 'LLM Params' }
             ],
-            technologies: ['LLaMA-70B', 'In-Context Learning', 'Speech Recognition', 'Python', 'Natural Language Processing'],
+            technologies: ['LLaMA-70B', 'Whisper CPP', 'Groq API', 'pyttsx3', 'Python', 'Multi-threading'],
             features: [
-                'Real-time voice command processing with high accuracy',
-                'Advanced prompt engineering for file operations',
-                'Few-shot learning for handling diverse user commands',
-                'Accessible interface design for visually impaired users',
-                'Context-aware file management and navigation'
+                'Whisper CPP speech-to-text with 95% accuracy on voice commands',
+                'Llama-70B via Groq API for natural language command interpretation',
+                'Multi-threaded document reader for parallel file processing',
+                'Space-bar interrupt functionality for real-time voice control',
+                'Cross-platform support (Windows 10/11, macOS 12–15)'
             ],
             link: 'https://github.com/Dinesh-Tejus/BlindSight'
         },
         'unlearning': {
             badge: 'Research',
             title: 'Machine Unlearning Research',
-            description: 'Implementation of "Who is Harry Potter?" paper for LLaMA-3-8B model. Conducted comparative study of Guardrailing, LoRA fine-tuning, and Sparse Autoencoders for selective knowledge removal while preserving model intelligence. Achieved targeted forgetting with minimal impact on general capabilities, demonstrating practical applications for privacy compliance and bias mitigation in production LLMs.',
+            description: 'Investigated selective knowledge removal from Llama-3-8B-Instruct targeting the Harry Potter universe. Compared three unlearning approaches: LoRA fine-tuning drove target-domain perplexity from 24.58 to 5.7×10¹² while preserving general knowledge (WikiText-2 perplexity: 15.49). Sparse Autoencoder approach ablated top-100 features with high Harry Potter activation, achieving subtler forgetting (perplexity 53.85) with better fluency. Guardrailing was effective but vulnerable to jailbreaking.',
             metrics: [
-                { value: '8B', label: 'Model Size' },
-                { value: '3', label: 'Methods Compared' },
-                { value: '95%', label: 'Knowledge Retained' }
+                { value: '5.7e12', label: 'Target Perplexity' },
+                { value: '15.49', label: 'General Perplexity' },
+                { value: '3', label: 'Methods' }
             ],
-            technologies: ['LLaMA-3', 'Sparse Autoencoders', 'LoRA', 'PyTorch', 'Guardrailing'],
+            technologies: ['LLaMA-3-8B', 'Sparse Autoencoders', 'LoRA', 'PyTorch', 'Guardrailing', 'Feature Ablation'],
             features: [
-                'Selective knowledge removal from large language models',
-                'Comparative analysis of three unlearning techniques',
-                'Preservation of general model capabilities during unlearning',
-                'Privacy compliance and bias mitigation strategies',
-                'Detailed performance metrics and evaluation framework'
+                'LoRA unlearning: target perplexity 24.58 → 5.7×10¹² with general knowledge preserved',
+                'Sparse Autoencoder: ablated top-100 HP-activated features for targeted forgetting',
+                'WikiText-2 perplexity maintained at 15.49 (vs 16.01 baseline) after LoRA unlearning',
+                'Comparative analysis of aggressive vs subtle forgetting trade-offs',
+                'Guardrailing analysis revealing jailbreak vulnerabilities in prompt-based approaches'
             ],
             link: 'https://github.com/Dinesh-Tejus/Machine-Unlearning'
         },
         'translation': {
             badge: 'NLP',
             title: 'Regional Language Translation',
-            description: 'Built LSTM-based Encoder-Decoder with attention mechanism for Kannada-English translation. Fine-tuned google/mt5-large achieving 15% performance improvement over baseline models. Implemented custom tokenization and preprocessing pipelines for handling regional language complexities.',
+            description: 'Built an LSTM-based encoder-decoder with attention mechanism from scratch for Kannada-English translation, then fine-tuned mT5-base on 150,000 parallel sentence pairs from a 75M corpus. The attention mechanism removed the encoder bottleneck, and fine-tuning improved BLEU score from 0.0715 to 0.0823 (15% improvement). Used SentencePiece tokenization to handle Kannada\'s rich morphology with 512-token dialogue and 128-token summary lengths.',
             metrics: [
-                { value: '15%', label: 'Improvement' },
-                { value: 'MT5', label: 'Base Model' },
-                { value: 'LSTM', label: 'Architecture' }
+                { value: '15%', label: 'BLEU Improvement' },
+                { value: '150K', label: 'Parallel Pairs' },
+                { value: 'mT5', label: 'Base Model' }
             ],
-            technologies: ['LSTM', 'Attention Mechanism', 'MT5', 'TensorFlow', 'Seq2Seq'],
+            technologies: ['LSTM', 'Attention Mechanism', 'mT5', 'SentencePiece', 'Seq2Seq', 'PyTorch'],
             features: [
-                'Custom LSTM encoder-decoder architecture with attention',
-                'Fine-tuning of google/mt5-large for regional languages',
-                'Advanced preprocessing for Kannada script',
-                'Attention visualization and analysis',
-                'Comprehensive evaluation on translation quality'
+                'LSTM encoder-decoder with attention mechanism built from scratch',
+                'Fine-tuned mT5-base achieving 15% BLEU improvement (0.0715 → 0.0823)',
+                'SentencePiece tokenization for Kannada morphological richness',
+                'Trained on 150K pairs from 75M parallel corpus',
+                'Attention alignment visualization to analyze translation quality'
             ],
             link: 'https://github.com/Dinesh-Tejus/Kannada-English-Translation'
         },
         'gpt2': {
             badge: 'Deep Learning',
             title: 'Custom GPT-2 Implementation',
-            description: 'Built decoder-only Transformer architecture from scratch with 134M+ parameters. Pre-trained on WikiText dataset for high-quality unsupervised language representations. Implemented multi-head attention, positional encoding, and layer normalization from first principles.',
+            description: 'Implemented GPT-2 Medium (~260M parameters) from scratch with 24 transformer layers, 16 attention heads, and 1024-dimensional embeddings. Achieved perplexity of 279.78 on WikiText (8.6% improvement over the Small variant at 306.19). Implemented three decoding strategies: greedy search, top-k sampling, and nucleus (top-p) sampling. Training loss converged from 7.5 to 4.4 over 5 epochs with validation plateauing at epoch 3.',
             metrics: [
-                { value: '134M+', label: 'Parameters' },
-                { value: '12', label: 'Transformer Layers' },
-                { value: 'WikiText', label: 'Training Data' }
+                { value: '260M', label: 'Parameters' },
+                { value: '279.8', label: 'Perplexity' },
+                { value: '24', label: 'Layers' }
             ],
-            technologies: ['Transformers', 'PyTorch', 'GPT-2', 'Attention Mechanism', 'Neural Networks'],
+            technologies: ['GPT-2', 'PyTorch', 'Transformers', 'Causal Self-Attention', 'Nucleus Sampling', 'WikiText'],
             features: [
-                'Complete Transformer decoder implementation from scratch',
-                'Multi-head self-attention mechanism',
-                'Positional encoding and embeddings',
-                'Layer normalization and residual connections',
-                'Pre-training on large-scale text corpus'
+                '260M parameter decoder-only transformer with 24 layers and 16 attention heads',
+                'Perplexity of 279.78, 8.6% improvement over Small variant (306.19)',
+                'Three decoding strategies: greedy, top-k, and nucleus (top-p) sampling',
+                'Causal self-attention with cross-entropy token prediction objective',
+                'Training convergence from 7.5 to 4.4 loss with epoch-level checkpointing'
             ],
             link: '#'
         },
         'dialogue': {
             badge: 'NLP',
             title: 'Dialogue Summarization',
-            description: 'Fine-tuned BART-large-CNN on dialogue data comparing 3 transformer architectures. Achieved highest ROUGE scores (ROUGE-1: 0.419, ROUGE-2: 0.216) on SAMSum dataset. Implemented custom training loops and evaluation metrics for dialogue-specific summarization.',
+            description: 'Evaluated three transformer architectures (BART, T5-large, PEGASUS) on the SAMSum dialogue summarization dataset of 16,369 conversations. Fine-tuned BART-large-CNN with FP16 mixed precision training, reducing training loss from 0.97 to 0.23 over 459 steps. Achieved ROUGE-1: 0.4193 and ROUGE-2: 0.2162, outperforming T5-large (0.3394) and PEGASUS-xsum (0.2144). Monitored via Wandb with ROUGE metric tracking.',
             metrics: [
                 { value: '0.419', label: 'ROUGE-1' },
                 { value: '0.216', label: 'ROUGE-2' },
-                { value: 'BART', label: 'Architecture' }
+                { value: '3', label: 'Models Compared' }
             ],
-            technologies: ['BART', 'Transformers', 'HuggingFace', 'NLP', 'PyTorch'],
+            technologies: ['BART', 'T5-large', 'PEGASUS', 'HuggingFace', 'PyTorch', 'Wandb'],
             features: [
-                'Fine-tuning BART-large-CNN for dialogue summarization',
-                'Comparative analysis of three transformer architectures',
-                'Custom evaluation metrics for dialogue quality',
-                'Data augmentation for improved performance',
-                'State-of-the-art ROUGE scores on SAMSum dataset'
+                'BART-large-CNN fine-tuned with FP16 mixed precision (loss 0.97 → 0.23)',
+                'Outperformed T5-large and PEGASUS-xsum on SAMSum benchmark',
+                '3-model comparative evaluation with Lead-3 baseline',
+                'Trained on 14,732 dialogues with Seq2SeqTrainer and AdamW optimizer',
+                'ROUGE metric monitoring via Weights & Biases integration'
             ],
             link: '#'
         },
         'penicillin': {
             badge: 'Big Data',
             title: 'Biopharmaceutical Manufacturing Analysis',
-            description: 'Conducted big data analysis using Hadoop and PySpark on Databricks to optimize penicillin production settings. Utilized Hadoop for distributed storage and PySpark for in-memory data processing to handle large-scale manufacturing datasets. The project focused on identifying key parameters affecting yield and optimizing the production process for efficiency.',
+            description: 'Conducted distributed big data analysis using Hadoop for storage and PySpark for in-memory processing on Databricks to optimize penicillin production. Analyzed large-scale manufacturing datasets to identify key parameters affecting yield and optimized production settings for efficiency using MapReduce pipelines.',
             metrics: [
                 { value: 'Big Data', label: 'Scale' },
                 { value: 'PySpark', label: 'Processing' },
@@ -262,11 +286,30 @@ function initProjectModals() {
             ],
             technologies: ['Big Data', 'PySpark', 'Hadoop', 'MapReduce', 'Databricks Products', 'Big Data Analytics'],
             features: [
-                'Conducted big data analysis using Hadoop and PySpark',
-                'Optimized penicillin production settings',
-                'Utilized Hadoop for distributed storage',
-                'Implemented PySpark for in-memory data processing',
-                'Analyzed large-scale manufacturing datasets'
+                'Hadoop distributed storage for large-scale manufacturing data',
+                'PySpark in-memory processing for real-time analytics',
+                'MapReduce pipelines for batch parameter analysis',
+                'Yield optimization through multi-variable parameter tuning',
+                'Databricks-hosted distributed computing environment'
+            ],
+            link: '#'
+        },
+        'loan-payback': {
+            badge: 'Kaggle Competition',
+            title: 'Predicting Loan Payback',
+            description: 'Kaggle Playground Series competition predicting loan repayment on 593,994 training records. Built a Level 2 stacked ensemble with Logistic Regression, XGBoost, CatBoost, and LightGBM as base learners and a LightGBM meta-model with isotonic calibration, achieving ROC-AUC of 0.92366. Validated through 5-fold stratified cross-validation with adversarial testing to detect train-test distribution shifts. SHAP analysis provided model interpretability across borrower financials and credit history features.',
+            metrics: [
+                { value: '0.923', label: 'ROC-AUC' },
+                { value: '594K', label: 'Records' },
+                { value: '4', label: 'Models' }
+            ],
+            technologies: ['XGBoost', 'CatBoost', 'LightGBM', 'Logistic Regression', 'SHAP', 'Ensemble Learning'],
+            features: [
+                'Level 2 stacked ensemble with isotonic-calibrated LightGBM meta-model',
+                'Combined Logistic Regression, XGBoost, CatBoost, and LightGBM base learners',
+                'SHAP analysis for model interpretability and feature importance',
+                '5-fold stratified cross-validation with adversarial distribution testing',
+                'Handled class imbalance (80% repayment, 20% default) effectively'
             ],
             link: '#'
         }
@@ -284,7 +327,6 @@ function initProjectModals() {
             const project = projectData[projectId];
 
             if (project) {
-                // Build modal content
                 let metricsHtml = project.metrics.map(m =>
                     `<div class="modal-metric">
                         <span class="modal-metric-value">${m.value}</span>
@@ -306,19 +348,19 @@ function initProjectModals() {
                         <h2 class="modal-title">${project.title}</h2>
                         <p class="modal-description">${project.description}</p>
                     </div>
-                    
+
                     <div class="modal-metrics">${metricsHtml}</div>
-                    
+
                     <div class="modal-section">
                         <h3 class="modal-section-title">Technologies Used</h3>
                         <div class="modal-tech-tags">${techHtml}</div>
                     </div>
-                    
+
                     <div class="modal-section">
                         <h3 class="modal-section-title">Key Features</h3>
                         <ul class="modal-features">${featuresHtml}</ul>
                     </div>
-                    
+
                     <a href="${project.link}" class="modal-link" target="_blank">
                         View Project on GitHub
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -351,137 +393,6 @@ function initProjectModals() {
     });
 }
 
-// Typing effect for hero title
-function initTypingEffect() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        heroTitle.style.borderRight = '3px solid var(--cyan-accent)';
-
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    heroTitle.style.borderRight = 'none';
-                }, 1000);
-            }
-        };
-
-        // Start typing effect after initial animation
-        setTimeout(typeWriter, 800);
-    }
-}
-
-// Floating icons animation
-function initFloatingIcons() {
-    const floatingIcons = document.querySelectorAll('.floating-icon');
-
-    floatingIcons.forEach((icon, index) => {
-        // Add random floating movement
-        setInterval(() => {
-            const randomX = (Math.random() - 0.5) * 20;
-            const randomY = (Math.random() - 0.5) * 20;
-
-            icon.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        }, 3000 + (index * 1000));
-    });
-}
-
-// Contact form interactions
-function initContactInteractions() {
-    const contactLinks = document.querySelectorAll('.contact-link');
-
-    contactLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Add ripple effect
-            const ripple = document.createElement('span');
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s linear';
-            ripple.style.left = '50%';
-            ripple.style.top = '50%';
-            ripple.style.width = '20px';
-            ripple.style.height = '20px';
-            ripple.style.marginLeft = '-10px';
-            ripple.style.marginTop = '-10px';
-
-            this.style.position = 'relative';
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-}
-
-// Add CSS for ripple effect
-function addRippleCSS() {
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Navigation active state
-function initNavigationState() {
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('nav a');
-
-    window.addEventListener('scroll', () => {
-        let currentSection = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= sectionTop - 200) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === currentSection) {
-                link.classList.add('active');
-            }
-        });
-    });
-}
-
-// Theme transition effect
-function initThemeTransition() {
-    document.body.style.transition = 'all 0.3s ease';
-}
-
-// Performance optimization: Throttle scroll events
-function throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-
-
 // Experience Modal System
 function initExperienceModals() {
     const modal = document.getElementById('experienceModal');
@@ -492,7 +403,6 @@ function initExperienceModals() {
     // Open modal when clicking on experience card
     document.querySelectorAll('.experience-card').forEach(card => {
         card.addEventListener('click', function () {
-            // Extract data from the card
             const logo = this.querySelector('.company-logo').outerHTML;
             const title = this.querySelector('.job-title').textContent;
             const company = this.querySelector('.company').textContent;
@@ -502,7 +412,6 @@ function initExperienceModals() {
             const details = this.querySelector('.experience-details').innerHTML;
             const techTags = this.querySelector('.tech-tags').outerHTML;
 
-            // Build modal content
             modalBody.innerHTML = `
                 <div class="modal-header">
                     <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
@@ -515,24 +424,23 @@ function initExperienceModals() {
                     </div>
                     <p class="modal-description">${description}</p>
                 </div>
-                
+
                 <div class="modal-metrics" style="margin-top: 20px; margin-bottom: 30px;">
                     ${metrics}
                 </div>
-                
+
                 <div class="modal-section">
                     <div class="experience-details-content">
                         ${details}
                     </div>
                 </div>
-                
+
                 <div class="modal-section">
                     <h3 class="modal-section-title">Technologies Used</h3>
                     ${techTags}
                 </div>
             `;
 
-            // Fix styles for injected content
             const injectedMetrics = modalBody.querySelector('.impact-metrics');
             if (injectedMetrics) {
                 injectedMetrics.style.background = 'transparent';
@@ -541,7 +449,6 @@ function initExperienceModals() {
                 injectedMetrics.style.margin = '0';
             }
 
-            // Add specific styles for the details list in modal
             const detailsList = modalBody.querySelector('ul');
             if (detailsList) {
                 detailsList.classList.add('modal-features');
@@ -577,66 +484,17 @@ function initExperienceModals() {
 
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all components
-
     initSmoothScroll();
     animateCounters();
     initScrollAnimations();
     initHeaderScroll();
-    initParallax();
-    initDownloadResume();
-    initSkillTags();
-    initProjectCards();
-    initFloatingIcons();
-    initContactInteractions();
-    addRippleCSS();
     initNavigationState();
-    initThemeTransition();
-
+    initMobileNav();
     initExperienceModals();
     initProjectModals();
-
-    // Optional: Add typing effect (uncomment if desired)
-    // initTypingEffect();
-
-    console.log('Portfolio loaded successfully! 🚀');
-});
-
-// Add some easter eggs
-let clickCount = 0;
-document.querySelector('.brand').addEventListener('click', () => {
-    clickCount++;
-    if (clickCount === 5) {
-        console.log('🎉 You found the easter egg! Welcome to my portfolio!');
-        clickCount = 0;
-    }
 });
 
 // Handle window resize
 window.addEventListener('resize', throttle(() => {
     // Reinitialize functions if needed
 }, 250));
-
-// Add keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        // Close any modals or overlays
-        document.activeElement.blur();
-    }
-});
-
-// Preload images for better performance
-function preloadImages() {
-    const imageUrls = [
-        // Add any image URLs you want to preload
-        // 'path/to/your/profile-image.jpg'
-    ];
-
-    imageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
-    });
-}
-
-// Call preload on load
-window.addEventListener('load', preloadImages);

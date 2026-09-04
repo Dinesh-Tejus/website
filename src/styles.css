@@ -907,12 +907,21 @@ h1 span {
   font-size: 3.25rem;
 }
 
-.footer-email {
-  display: inline-block;
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
   margin-top: 28px;
+}
+
+.footer-contact a {
   color: var(--accent-strong);
   font-size: 1rem;
   font-weight: 620;
+}
+
+.footer-contact a:hover {
+  color: var(--ink);
 }
 
 .footer-links {

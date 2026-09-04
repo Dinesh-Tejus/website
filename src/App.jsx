@@ -5,6 +5,19 @@ import blindSightImage from '../images/Blindsight.png';
 
 const entries = [
   {
+    id: 'scout',
+    category: 'builds',
+    type: 'Voice AI',
+    title: 'Scout: Voice-Powered Brand Research',
+    shortTitle: 'Scout',
+    excerpt: 'A voice-powered brand research agent built with the Gemini 2.5 Live API, Tavily, and Firestore.',
+    body: [
+      'Scout is a voice-powered agent for brand research, combining live voice interaction through the Gemini 2.5 Live API with web research from Tavily.',
+      'The application uses Firestore for data, FastAPI and React for its backend and frontend, and runs on Cloud Run.',
+    ],
+    signal: 'Gemini 2.5 Live + Tavily + Firestore',
+  },
+  {
     id: 'darwin',
     category: 'builds',
     type: 'Developer tools',
@@ -245,7 +258,7 @@ function EntryModal({ entry, onClose }) {
           <p className="modal-type">{entry.type}</p>
           <h2 id="entry-modal-title">{entry.title}</h2>
           {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          <a className="primary-action" href={entry.link} target="_blank" rel="noreferrer">Open repository</a>
+          {entry.link && <a className="primary-action" href={entry.link} target="_blank" rel="noreferrer">Open repository</a>}
         </div>
       </article>
     </div>
@@ -399,7 +412,10 @@ export default function App() {
         <div className="page-width footer-layout">
           <div>
             <h2>Good work starts with a useful conversation.</h2>
-            <a className="footer-email" href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
+            <div className="footer-contact" aria-label="Contact Tejus Dinesh">
+              <a href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
+              <a href="tel:+18576547354">857-654-7354</a>
+            </div>
           </div>
           <div className="footer-links">
             <a href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer">LinkedIn</a>

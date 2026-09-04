@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import portrait from '../images/portrait-refined-sharp.webp';
 import translationImage from '../images/EngToKan.webp';
 import blindSightImage from '../images/Blindsight.png';
@@ -157,16 +157,24 @@ const focusNotes = [
   ['Model adaptation and unlearning', 'Parameter-efficient fine-tuning, selective knowledge removal, and careful evaluation.'],
 ];
 
+const profileFacts = [
+  ['Current', 'Full Stack AI Developer, Reidy.AI'],
+  ['Based in', 'Houston, Texas'],
+  ['Education', 'M.S. Artificial Intelligence, Northeastern · 3.96 GPA'],
+];
+
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
-  const links = [['#entries', 'Entries'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Write to me']];
+  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Contact']];
 
   return (
     <header className="site-header">
       <div className="page-width header-inner">
         <a className="brand" href="#top" aria-label="Tejus Dinesh, home">Tejus Dinesh</a>
         <nav className={open ? 'is-open' : ''} aria-label="Primary navigation">
-          {links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
+          {links.map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
+          ))}
         </nav>
         <div className="header-actions">
           <button className="text-control" type="button" onClick={onThemeToggle} title="Change color theme">
@@ -197,41 +205,20 @@ function ProjectVisual({ entry, modal = false }) {
   );
 }
 
-function ProjectShowcase({ projects, onOpen }) {
-  const [activeId, setActiveId] = useState(projects[0].id);
-  const active = projects.find((entry) => entry.id === activeId) || projects[0];
-
-  useEffect(() => {
-    if (!projects.some((entry) => entry.id === activeId)) setActiveId(projects[0].id);
-  }, [activeId, projects]);
-
+function ProjectCard({ entry, onOpen }) {
   return (
-    <div className="project-showcase">
-      <div className="project-index" role="tablist" aria-label="Selected projects">
-        {projects.map((entry) => (
-          <button
-            key={entry.id}
-            className={entry.id === active.id ? 'is-active' : ''}
-            type="button"
-            role="tab"
-            aria-selected={entry.id === active.id}
-            onClick={() => setActiveId(entry.id)}
-          >
-            <span>{entry.type}</span>
-            <strong>{entry.shortTitle}</strong>
-          </button>
-        ))}
-      </div>
-      <article className="project-stage" key={active.id}>
-        <ProjectVisual entry={active} />
-        <div className="project-copy">
-          <p>{active.signal}</p>
-          <h3>{active.title}</h3>
-          <p className="project-summary">{active.excerpt}</p>
-          <button className="inline-action" type="button" onClick={() => onOpen(active)}>Project details</button>
+    <article className={`project-card ${entry.id === 'scout' ? 'project-card--featured' : ''}`}>
+      <ProjectVisual entry={entry} />
+      <div className="project-card-body">
+        <p className="project-type">{entry.type}</p>
+        <h3>{entry.title}</h3>
+        <p className="project-summary">{entry.excerpt}</p>
+        <div className="project-meta-row">
+          <span>{entry.signal}</span>
+          <button className="inline-action" type="button" onClick={() => onOpen(entry)}>Details</button>
         </div>
-      </article>
-    </div>
+      </div>
+    </article>
   );
 }
 
@@ -275,7 +262,7 @@ function ExperienceRow({ experience, open, onToggle }) {
           <span>{experience.org}</span>
         </span>
         <span className="role-location">{experience.location}</span>
-        <span className="role-toggle" aria-hidden="true">{open ? '-' : '+'}</span>
+        <span className="role-toggle" aria-hidden="true">{open ? '−' : '+'}</span>
       </button>
       <div className="role-panel" hidden={!open}>
         <p className="role-summary">{experience.summary}</p>
@@ -290,11 +277,9 @@ function ExperienceRow({ experience, open, onToggle }) {
 
 export default function App() {
   const [dark, setDark] = useState(() => localStorage.getItem('site-theme') === 'dark');
-  const [focusIndex, setFocusIndex] = useState(0);
-  const [filter, setFilter] = useState('all');
   const [selectedEntry, setSelectedEntry] = useState(null);
   const [openRole, setOpenRole] = useState('reidy');
-  const filteredEntries = useMemo(() => filter === 'all' ? entries : entries.filter((entry) => entry.category === filter), [filter]);
+  const filteredEntries = entries;
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
@@ -323,57 +308,61 @@ export default function App() {
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer at Reidy.AI</p>
-            <h1>I build AI systems<br /><span>that survive real work.</span></h1>
-            <p className="hero-intro">Agents, retrieval, structured data, and model adaptation — with the discipline to keep the output useful.</p>
+            <h1>I build AI systems<br /><span>that are useful in practice.</span></h1>
+            <p className="hero-intro">Agentic software, retrieval, structured data, and model adaptation — designed with enough discipline to hold up outside a demo.</p>
             <div className="hero-actions">
-              <a className="primary-action" href="#entries">View work</a>
+              <a className="primary-action" href="#work">View work</a>
               <a className="secondary-action" href="mailto:dtejus03@gmail.com">Email me</a>
             </div>
+            <dl className="hero-facts" aria-label="Profile summary">
+              {profileFacts.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <figure className="hero-portrait">
             <img src={portrait} alt="Tejus Dinesh wearing a coral hoodie in a glass atrium" />
             <figcaption>Tejus Dinesh / Houston, Texas</figcaption>
           </figure>
-          <div className="hero-facts" aria-label="Profile summary">
-            <p><span>Current</span><strong>Full Stack AI Developer, Reidy.AI</strong></p>
-            <p><span>Background</span><strong>AI, ML, enterprise software</strong></p>
-            <p><span>Education</span><strong>M.S. AI, Northeastern · 3.96 GPA</strong></p>
-          </div>
         </section>
 
-        <section className="focus-band">
-          <div className="page-width focus-layout">
-            <div className="focus-heading">
-              <p>What I am thinking about now</p>
-              <div className="focus-controls" role="group" aria-label="Choose focus area">
-                {focusNotes.map(([title], index) => (
-                  <button key={title} className={focusIndex === index ? 'is-active' : ''} type="button" onClick={() => setFocusIndex(index)} aria-label={`Show ${title}`} />
-                ))}
-              </div>
+        <section className="overview-band">
+          <div className="page-width overview-layout" data-reveal>
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Current direction</p>
+              <h2>Practical systems, careful implementation, and simple interfaces.</h2>
             </div>
-            <div className="focus-copy" key={focusIndex}>
-              <h2>{focusNotes[focusIndex][0]}</h2>
-              <p>{focusNotes[focusIndex][1]}</p>
+            <div className="overview-columns">
+              {focusNotes.map(([title, text]) => (
+                <div key={title} className="overview-item">
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="entries page-width" id="entries" data-reveal>
+        <section className="entries page-width" id="work" data-reveal>
           <div className="section-heading">
-            <h2>Selected work</h2>
+            <p className="eyebrow">Selected work</p>
+            <h2>Projects that were built to ship, not just to impress.</h2>
             <p>Research and builds where the implementation has to survive contact with reality.</p>
           </div>
-          <div className="project-filters" role="group" aria-label="Filter projects">
-            {[['all', 'All'], ['builds', 'Builds'], ['research', 'Research']].map(([value, label]) => (
-              <button key={value} type="button" className={filter === value ? 'is-active' : ''} onClick={() => setFilter(value)}>{label}</button>
+          <div className="project-grid">
+            {filteredEntries.map((entry) => (
+              <ProjectCard key={entry.id} entry={entry} onOpen={setSelectedEntry} />
             ))}
           </div>
-          <ProjectShowcase projects={filteredEntries} onOpen={setSelectedEntry} />
         </section>
 
         <section className="experience" id="experience" data-reveal>
-          <div className="page-width">
-            <div className="experience-intro">
+          <div className="page-width experience-layout">
+            <div className="section-heading section-heading--compact">
+              <p className="eyebrow">Experience</p>
               <h2>From enterprise software to applied AI.</h2>
               <p>Experience across app access, retrieval, knowledge graphs, document pipelines, and the little things that keep systems trustworthy.</p>
             </div>
@@ -391,30 +380,28 @@ export default function App() {
         </section>
 
         <section className="about page-width" id="about" data-reveal>
-          <div className="about-statement">
+          <div className="section-heading section-heading--compact">
+            <p className="eyebrow">About</p>
             <h2>A technical career is part of a life, not the whole page.</h2>
-            <p>Based in Houston, I build AI systems, study how models behave, and keep a life outside the terminal.</p>
           </div>
-          <div className="about-details">
+          <div className="about-grid">
             <p>I completed my MS in Artificial Intelligence at Northeastern University in December 2025 with a 3.96 GPA. My work spans multi-agent systems, RAG, knowledge graphs, model fine-tuning, machine unlearning, NLP, and developer tooling.</p>
             <p>That combination is the point: shipping useful systems, not just elegant demos.</p>
-          </div>
-          <div className="future-pages" aria-label="Future site areas">
-            <span>Projects</span>
-            <span>Research</span>
-            <span>Writing</span>
-            <span>Life</span>
+            <div className="about-points" aria-label="Selected focus areas">
+              {focusNotes.map(([title]) => <span key={title}>{title}</span>)}
+            </div>
           </div>
         </section>
       </main>
 
       <footer className="site-footer" id="contact">
-        <div className="page-width footer-layout">
+        <div className="page-width footer-layout" data-reveal>
           <div>
+            <p className="eyebrow">Contact</p>
             <h2>Good work starts with a useful conversation.</h2>
             <div className="footer-contact" aria-label="Contact Tejus Dinesh">
               <a href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
-              <a href="tel:+18576547354">857-654-7354</a>
+              <a href="tel:+185****7354">857-654-7354</a>
             </div>
           </div>
           <div className="footer-links">

@@ -303,16 +303,16 @@ function ProjectVisual({ entry, modal = false }) {
   );
 }
 
-function ProofList({ items, compact = false }) {
+function PillList({ items, compact = false }) {
   return (
-    <dl className={compact ? 'project-proof project-proof--compact' : 'project-proof'}>
+    <ul className={compact ? 'project-pills project-pills--compact' : 'project-pills'}>
       {items.map(([label, value]) => (
-        <div key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
-        </div>
+        <li key={label} className="project-pill">
+          <span className="project-pill-label">{label}</span>
+          <span className="project-pill-value">{value}</span>
+        </li>
       ))}
-    </dl>
+    </ul>
   );
 }
 
@@ -324,7 +324,7 @@ function ProjectCard({ entry, onOpen }) {
         <p className="project-type">{entry.type}</p>
         <h3>{entry.title}</h3>
         <p className="project-summary">{entry.excerpt}</p>
-        <ProofList items={entry.proof} compact />
+        <PillList items={entry.proof} compact />
         <div className="project-meta-row">
           <span>{entry.signal}</span>
           <button className="inline-action" type="button" onClick={() => onOpen(entry)}>Details</button>
@@ -402,7 +402,7 @@ function EntryModal({ entry, onClose }) {
         <div className="modal-copy" id="entry-modal-description">
           <p className="modal-type">{entry.type}</p>
           <h2 id="entry-modal-title">{entry.title}</h2>
-          <ProofList items={entry.proof} />
+          <PillList items={entry.proof} />
           {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           {entry.link && <a className="primary-action" href={entry.link} target="_blank" rel="noreferrer">Open repository</a>}
         </div>

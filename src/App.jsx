@@ -8,68 +8,54 @@ const heroProof = [
   ['Scope', '70-100 page appraisal reports'],
   ['Systems', '500-1500 page extraction pipelines'],
   ['Training', 'Northeastern M.S. AI · 3.96/4.00 GPA'],
-];
-
-const focusAreas = [
-  {
-    title: 'Multi-agent systems',
-    text: 'Orchestration patterns that stay understandable as the workflow grows, with tools, retrieval, and handoffs wired together deliberately.',
-  },
-  {
-    title: 'RAG + knowledge graphs',
-    text: 'Document intelligence and structured retrieval for dense corpora, property data, and other domains where plain prompting is not enough.',
-  },
-  {
-    title: 'Model adaptation + unlearning',
-    text: 'Parameter-efficient fine-tuning, selective knowledge removal, and evaluation when the base model needs to be shaped for a specific job.',
-  },
+  ['Stack', 'Agents · DuckDB · FastAPI · React'],
 ];
 
 const entries = [
   {
     id: 'scout',
     category: 'builds',
-    type: 'Voice AI',
+    type: 'Case study · Voice AI',
     title: 'Scout: Voice-Powered Brand Research',
     shortTitle: 'Scout',
-    excerpt: 'Live voice research workflow that combines Gemini 2.5 Live, Tavily search, and Firestore-backed state.',
+    excerpt: 'A voice-first research system for live brand investigation, where speech, search, and state management stay in sync.',
     body: [
       'Scout turns voice into a real research interface. A user can ask follow-up questions naturally while the system keeps state in Firestore and resolves live web sources through Tavily.',
       'The application is built with FastAPI and React, runs on Cloud Run, and uses Gemini 2.5 Live for the conversational layer.',
     ],
     signal: 'Gemini 2.5 Live / Tavily / Firestore',
     proof: [
-      ['Context', 'Voice-first brand research'],
-      ['Build', 'FastAPI · React · Cloud Run'],
-      ['System', 'Live speech + web research'],
+      ['Problem', 'Voice-first brand research'],
+      ['System', 'FastAPI · React · Cloud Run'],
+      ['Why it mattered', 'Speech, search, and state in one loop'],
     ],
   },
   {
     id: 'darwin',
     category: 'builds',
-    type: 'Developer tools',
+    type: 'Case study · Developer tools',
     title: 'Darwin: Legacy Package Detector',
     shortTitle: 'Darwin',
-    excerpt: 'An AI-driven VS Code extension that flags unmaintained packages and helps automate migrations using Gemini and Tavily.',
+    excerpt: 'A VS Code extension for finding unmaintained packages and previewing migration paths before technical debt becomes a release blocker.',
     body: [
       'Darwin scans Python and JavaScript or TypeScript imports for deprecated or unmaintained packages, then uses web research and model analysis to judge package health.',
       'The extension includes inline diagnostics, migration suggestions with diff previews, workspace-wide scanning, local caching, confidence thresholds, ignore lists, and undo support.',
     ],
     signal: 'Gemini / Tavily / VS Code',
     proof: [
-      ['Context', 'Dependency health checks'],
-      ['Build', 'Inline diagnostics + diff previews'],
-      ['System', 'Workspace scanning with undo'],
+      ['Problem', 'Dependency health checks'],
+      ['System', 'Inline diagnostics + diff previews'],
+      ['Why it mattered', 'Workspace-wide migration guidance'],
     ],
     link: 'https://github.com/Dinesh-Tejus/Darwin',
   },
   {
     id: 'blindsight',
     category: 'builds',
-    type: 'AI accessibility',
+    type: 'Case study · AI accessibility',
     title: 'BlindSight: AI-Powered File Assistant',
     shortTitle: 'BlindSight',
-    excerpt: 'A voice-controlled file navigation prototype using Whisper CPP, Llama-70B through Groq, and text-to-speech.',
+    excerpt: 'A voice-controlled file-system assistant for visually impaired users, built as a serious prototype rather than a concept deck.',
     body: [
       'BlindSight is a high-fidelity prototype for voice-controlled file-system navigation for visually impaired users. Whisper CPP handles speech-to-text, while a Llama 70B model through Groq interprets natural-language commands.',
       'The prototype supports folder navigation, file and directory creation, document reading and editing, text-to-speech feedback, and keyboard-interrupt control. Testing recorded 95% speech-recognition accuracy and an 85% task-success rate.',
@@ -78,8 +64,8 @@ const entries = [
     alt: 'BlindSight project mark',
     signal: '95% speech accuracy / 85% task success',
     proof: [
-      ['Context', 'Voice-controlled file navigation'],
-      ['Build', 'Whisper CPP · Groq · TTS'],
+      ['Problem', 'Voice-controlled file navigation'],
+      ['System', 'Whisper CPP · Groq · TTS'],
       ['Result', '95% accuracy / 85% task success'],
     ],
     link: 'https://github.com/Dinesh-Tejus/BlindSight',
@@ -87,18 +73,18 @@ const entries = [
   {
     id: 'unlearning',
     category: 'research',
-    type: 'Machine unlearning',
+    type: 'Case study · Machine unlearning',
     title: 'Selective knowledge removal from Llama-3-8B',
     shortTitle: 'Unlearning',
-    excerpt: 'A comparison of LoRA fine-tuning, sparse autoencoder feature ablation, and prompt-based guardrailing.',
+    excerpt: 'A controlled comparison of LoRA, sparse-autoencoder ablation, and guardrailing for removing Harry Potter knowledge from Llama-3-8B-Instruct.',
     body: [
       'The project evaluates three approaches to removing Harry Potter knowledge from Llama-3-8B-Instruct: LoRA fine-tuning, sparse autoencoder feature ablation, and guardrailing.',
       'LoRA increased target-domain perplexity from 24.58 to 5.7 × 10^12 while maintaining a WikiText-2 perplexity of 15.49. The sparse-autoencoder experiment ablated the 100 most active target-domain features for a more selective intervention.',
     ],
     signal: 'Perplexity 24.58 → 5.7 × 10^12',
     proof: [
-      ['Context', 'Targeted knowledge removal'],
-      ['Build', 'LoRA · SAE ablation · guardrailing'],
+      ['Problem', 'Targeted knowledge removal'],
+      ['System', 'LoRA · SAE ablation · guardrailing'],
       ['Result', 'Selective intervention on Llama-3-8B'],
     ],
     link: 'https://github.com/Dinesh-Tejus/Machine-Unlearning',
@@ -106,7 +92,7 @@ const entries = [
   {
     id: 'fine-tuning',
     category: 'research',
-    type: 'Model adaptation',
+    type: 'Case study · Model adaptation',
     title: 'Comparing LoRA, OFT, and ETHER',
     shortTitle: 'Fine-tuning',
     excerpt: 'An implementation-focused comparison of three parameter-efficient language-model fine-tuning methods.',
@@ -116,8 +102,8 @@ const entries = [
     ],
     signal: '344K parameters / 30% GPU with ETHER+',
     proof: [
-      ['Context', 'PEFT comparison study'],
-      ['Build', 'LoRA · OFT · ETHER'],
+      ['Problem', 'PEFT tradeoffs'],
+      ['System', 'LoRA · OFT · ETHER'],
       ['Result', '344K trainable params / 30% GPU'],
     ],
     link: 'https://github.com/Dinesh-Tejus/Comparing-LORA-OFT-ETHER',
@@ -125,10 +111,10 @@ const entries = [
   {
     id: 'translation',
     category: 'builds',
-    type: 'Natural language processing',
+    type: 'Case study · NLP',
     title: 'Regional Language Translation',
     shortTitle: 'Translation',
-    excerpt: 'A comparison between a custom encoder-decoder model and fine-tuned mT5 for Kannada-English translation.',
+    excerpt: 'A comparison between a custom encoder-decoder model and fine-tuned mT5 for Kannada-English translation across 150,000 sentence pairs.',
     body: [
       'The project implements an LSTM encoder-decoder with attention, then compares it with mT5-base fine-tuned on 150,000 Kannada-English sentence pairs.',
       'The mT5 experiment improved BLEU from 0.0715 to 0.0823, a 15% increase. SentencePiece tokenization was used to handle Kannada morphology.',
@@ -137,8 +123,8 @@ const entries = [
     alt: 'Illustration of an encoder-decoder Kannada-English translation system',
     signal: '150K sentence pairs / 15% BLEU gain',
     proof: [
-      ['Context', 'Kannada-English translation'],
-      ['Build', 'LSTM attention · mT5-base'],
+      ['Problem', 'Kannada-English translation'],
+      ['System', 'LSTM attention · mT5-base'],
       ['Result', 'BLEU 0.0715 → 0.0823'],
     ],
     link: 'https://github.com/Dinesh-Tejus/Kannada-English-Translation',
@@ -148,21 +134,23 @@ const entries = [
 const experiences = [
   {
     id: 'reidy',
+    badge: 'Current role',
     date: 'Mar 2026 - Present',
     org: 'Reidy.AI',
     location: 'Full Stack AI Developer',
     role: 'Full Stack AI Developer',
-    summary: 'Leading applied AI work where the output has to be long, structured, and defensible.',
+    summary: 'Leading the applied AI work that turns property data into long-form reports, usable queries, and customer-ready systems.',
     signal: '70-100 page reports / DuckDB NL-to-SQL / customer-facing architecture',
     bullets: [
       'Built an agentic appraisal pipeline that turns property data into 70-100 page reports.',
-      'Developed DuckDB-backed NL-to-SQL workflows over property datasets.',
-      'Supported pre-sales discovery, architecture reviews, and POCs with customers.',
+      'Developed DuckDB-backed natural-language querying over property datasets for internal and customer workflows.',
+      'Supported pre-sales discovery, architecture reviews, and POCs so the system matched the way operators actually work.',
     ],
     stack: 'Agents / DuckDB / property analytics / technical discovery',
   },
   {
     id: 'c10',
+    badge: 'Previous role',
     date: 'Aug 2024 - Dec 2024',
     org: 'C10 Labs',
     location: 'Machine Learning Engineer Co-op',
@@ -170,19 +158,20 @@ const experiences = [
     summary: 'Built retrieval and automation systems for dense documents and high-volume workflows.',
     signal: '500-1500 page extraction / knowledge graphs / email automation',
     bullets: [
-      'Built a multi-agent RAG Q&A system using knowledge graphs.',
+      'Built a multi-agent RAG Q&A system using knowledge graphs for structured retrieval.',
       'Developed extraction pipelines for 500-1500 page documents.',
-      'Delivered contract risk assessment and high-volume email agents.',
+      'Delivered contract-risk assessment and high-volume email agents.',
     ],
     stack: 'AutoGen / LangChain / LangGraph / OpenAI / Neo4j',
   },
   {
     id: 'autodesk',
+    badge: 'Enterprise systems',
     date: 'Jun 2021 - Aug 2023',
     org: 'Autodesk',
     location: 'Software Engineer',
     role: 'Software Engineer',
-    summary: 'Worked on enterprise access and analytics tooling where reliability and rollout mattered.',
+    summary: 'Worked on access and analytics tooling where reliability, rollout, and internal adoption mattered.',
     signal: 'Azure App Proxy / SSO automation / Power BI dashboards',
     bullets: [
       'Built Azure App Proxy solutions for secure enterprise access.',
@@ -193,6 +182,7 @@ const experiences = [
   },
   {
     id: 'neu',
+    badge: 'Graduate study',
     date: 'Aug 2023 - Dec 2025',
     org: 'Northeastern University',
     location: 'M.S. in Artificial Intelligence',
@@ -209,16 +199,16 @@ const experiences = [
 
 const currentFocus = [
   {
-    title: 'Multi-agent systems',
-    text: 'Agent orchestration, tool use, and handoffs that remain understandable when the workflow stops being a demo and starts being a system.',
+    title: 'Agent workflows that stay legible',
+    text: 'Orchestration, tools, and handoffs designed for systems that need to be debuggable, not just impressive in a demo.',
   },
   {
-    title: 'RAG and structured data',
-    text: 'Retrieval patterns, knowledge graphs, and NL-to-SQL setups that make language models useful against real datasets.',
+    title: 'Dense-document retrieval',
+    text: 'RAG, knowledge graphs, and NL-to-SQL for corpora and datasets that are too large or structured for plain prompting.',
   },
   {
-    title: 'Model adaptation and unlearning',
-    text: 'Fine-tuning, evaluation, and selective knowledge removal for teams that need control over what the model knows.',
+    title: 'Model shaping with constraints',
+    text: 'Fine-tuning, evaluation, and selective knowledge removal when the model has to be controlled as tightly as the product.'
   },
 ];
 
@@ -413,10 +403,11 @@ function EntryModal({ entry, onClose }) {
 
 function ExperienceRow({ experience, open, onToggle }) {
   return (
-    <article className={`role ${open ? 'is-expanded' : ''}`}>
+    <article className={`role ${open ? 'is-expanded' : ''} ${experience.id === 'reidy' ? 'role--featured' : ''}`}>
       <button className="role-heading" type="button" onClick={onToggle} aria-expanded={open} aria-controls={`role-panel-${experience.id}`}>
         <span className="role-date">{experience.date}</span>
         <span className="role-identity">
+          {experience.badge && <span className="role-badge">{experience.badge}</span>}
           <strong>{experience.role}</strong>
           <span>{experience.org}</span>
         </span>
@@ -470,8 +461,9 @@ export default function App() {
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer · Reidy.AI</p>
-            <h1>I build AI systems that hold up under real work.</h1>
-            <p className="hero-intro">Agentic pipelines, retrieval layers, and data-heavy interfaces for long documents, property analytics, and enterprise workflows—shipped with enough rigor to be trusted outside a demo.</p>
+            <h1>I build AI systems for dense documents, property analytics, and enterprise workflows.</h1>
+            <p className="hero-intro">Agentic pipelines, retrieval layers, and data-heavy interfaces built to survive long reports, high-volume extraction, and customer review.</p>
+            <p className="hero-note">Current work centers on appraisal reports, NL-to-SQL over property data, and the infrastructure around making model output usable.</p>
             <ul className="hero-proof" aria-label="Proof points">
               {heroProof.map(([label, value]) => (
                 <li key={label}>
@@ -495,8 +487,8 @@ export default function App() {
           <div className="page-width focus-layout" data-reveal>
             <div className="section-heading section-heading--compact">
               <p className="eyebrow">Current focus</p>
-              <h2>Building systems that connect models to data, tools, and workflows.</h2>
-              <p>Right now I’m focused on multi-agent orchestration, retrieval over dense documents, and model adaptation for product work that has to stay clear, auditable, and fast to ship.</p>
+              <h2>What I’m focused on now is the seam where models meet data, tools, and operators.</h2>
+              <p>I’m optimizing for systems that are practical, inspectable, and hard to confuse with a demo.</p>
             </div>
             <div className="focus-grid">
               {currentFocus.map((item) => (
@@ -506,8 +498,8 @@ export default function App() {
                 </article>
               ))}
               <article className="focus-cta">
-                <p className="contact-label">Available for</p>
-                <p>AI product engineering, retrieval systems, multi-agent workflows, and implementation-heavy technical roles.</p>
+                <p className="contact-label">Now</p>
+                <p>Working on agentic workflows, dense-document retrieval, model adaptation, and the evaluation discipline that keeps those systems honest.</p>
               </article>
             </div>
           </div>
@@ -516,8 +508,8 @@ export default function App() {
         <section className="entries page-width" id="work" data-reveal>
           <div className="section-heading">
             <p className="eyebrow">Selected work</p>
-            <h2>Case studies from projects where the implementation details matter.</h2>
-            <p>These are systems with scale, constraints, and measurable outcomes—not portfolio cards that stop at the surface.</p>
+            <h2>Case studies from systems with scope, constraints, and measurable outcomes.</h2>
+            <p>These are implementation-heavy projects that show what the system did, why it mattered, and how much it had to handle.</p>
           </div>
           <div className="project-grid">
             {entries.map((entry) => (
@@ -530,8 +522,8 @@ export default function App() {
           <div className="page-width experience-layout">
             <div className="section-heading section-heading--compact">
               <p className="eyebrow">Experience</p>
-              <h2>Roles that show engineering leverage, not just tenure.</h2>
-              <p>From enterprise access to applied AI, the pattern is the same: ship systems that have to work, be explainable, and survive contact with users.</p>
+              <h2>A career story that moves from enterprise reliability to applied AI delivery.</h2>
+              <p>Reidy is the current center of gravity; C10 and Autodesk show the leverage and systems thinking that led here, while Northeastern grounds the AI depth behind the work.</p>
             </div>
             <div className="role-list">
               {experiences.map((experience) => (
@@ -563,16 +555,16 @@ export default function App() {
         <section className="contact page-width" id="contact" data-reveal>
           <div className="section-heading section-heading--compact">
             <p className="eyebrow">Contact</p>
-            <h2>If the work is real, email is the right next step.</h2>
-            <p>For roles, collaborations, or serious project conversations, reach out directly.</p>
+            <h2>If the work is serious, email is the right next step.</h2>
+            <p>For roles, partnerships, or product work that needs implementation depth, reach out directly.</p>
           </div>
           <div className="contact-layout">
             <div className="contact-panel contact-panel--feature">
               <p className="contact-label">Fastest route</p>
               <h3>Email</h3>
-              <p className="contact-copy">Best for hiring conversations, partnerships, and AI product work that needs implementation depth.</p>
+              <p className="contact-copy">Best for hiring conversations, collaborations, and AI product work that needs a builder who can move from model choice to production delivery.</p>
               <a className="primary-action" href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
-              <a className="secondary-action" href="tel:+18576547354">Call or text 857-654-7354</a>
+              <a className="secondary-action" href="tel:+185****7354">Call or text 857-654-7354</a>
             </div>
             <div className="contact-panel">
               <p className="contact-label">Elsewhere</p>
@@ -589,6 +581,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="page-width footer-inner">
           <span>&copy; 2026 Tejus Dinesh</span>
+          <span>Applied AI systems · Retrieval · Enterprise software</span>
         </div>
       </footer>
       <EntryModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />

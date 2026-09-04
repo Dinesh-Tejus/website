@@ -231,6 +231,20 @@ main {
   text-transform: uppercase;
 }
 
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::before {
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+  border-radius: 999px;
+  content: '';
+}
+
 h1,
 h2,
 h3,
@@ -425,6 +439,7 @@ h1 span {
 .overview-item {
   padding: 20px;
   border: 1px solid var(--line);
+  border-top-color: color-mix(in srgb, var(--accent) 38%, var(--line));
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--canvas) 55%, var(--surface));
 }
@@ -510,7 +525,7 @@ h1 span {
 }
 
 .project-meta-row span {
-  color: var(--muted);
+  color: var(--accent-strong);
   font-size: 0.84rem;
   line-height: 1.5;
 }
@@ -663,6 +678,7 @@ h1 span {
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--canvas) 40%, var(--surface));
   overflow: hidden;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
 .role-heading {
@@ -676,6 +692,7 @@ h1 span {
   background: transparent;
   text-align: left;
   cursor: pointer;
+  transition: background 160ms ease;
 }
 
 .role-date,
@@ -704,6 +721,20 @@ h1 span {
   justify-self: end;
   font-size: 1.2rem;
   line-height: 1;
+}
+
+.role:hover .role-heading,
+.role.is-expanded .role-heading {
+  background: color-mix(in srgb, var(--accent-soft) 12%, transparent);
+}
+
+.role.is-expanded {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.role.is-expanded .role-toggle {
+  color: var(--accent-strong);
 }
 
 .role-panel {
@@ -757,9 +788,9 @@ h1 span {
 
 .about-points span {
   padding: 10px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
   border-radius: 999px;
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 88%, var(--accent-soft));
   font-size: 0.86rem;
   color: var(--ink);
 }
@@ -794,6 +825,12 @@ h1 span {
   color: var(--muted);
   font-size: 0.92rem;
   text-decoration: none;
+}
+
+.footer-contact a,
+.footer-links a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 72%, transparent);
 }
 
 .footer-contact a:hover,

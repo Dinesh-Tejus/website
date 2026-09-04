@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import portrait from '../images/portrait-refined.webp';
+import portrait from '../images/portrait-refined-sharp.webp';
 import translationImage from '../images/EngToKan.webp';
 import blindSightImage from '../images/Blindsight.png';
 
@@ -83,61 +83,65 @@ const entries = [
 const experiences = [
   {
     id: 'reidy',
-    date: 'Mar 2026 - present',
+    date: 'Mar 2026 - Present',
     org: 'Reidy.AI',
-    location: 'Current role',
-    role: 'AI Developer',
-    summary: 'Currently working as an AI Developer at Reidy.AI.',
-    bullets: [],
-    stack: '',
-  },
-  {
-    id: 'neu',
-    date: 'Sep - Dec 2025',
-    org: 'Northeastern University, Khoury College',
-    location: 'Boston, Massachusetts',
-    role: 'Graduate Teaching Assistant',
-    summary: 'Supported Natural Language Processing students across course concepts and practical implementation.',
+    location: 'Full Stack AI Developer',
+    role: 'Full Stack AI Developer',
+    summary: 'Building an agentic property appraisal pipeline that turns dense inputs into long-form reports and usable decisions.',
     bullets: [
-      'Supported students learning transformer architectures, attention mechanisms, fine-tuning techniques, and NLP pipeline development.',
-      'Conducted office hours, graded assignments, and assisted with material from tokenization through large language models.',
+      'Built an agentic appraisal pipeline that generates 70-100 page property reports.',
+      'Developed NL-to-SQL workflows over property datasets with DuckDB.',
+      'Supported pre-sales discovery, architecture reviews, and POCs.',
     ],
-    stack: 'NLP / Transformers / PyTorch / Hugging Face / Teaching',
+    stack: 'DuckDB / NL-to-SQL / Agents / Property analytics',
   },
   {
     id: 'c10',
-    date: 'Aug - Dec 2024',
+    date: 'Aug 2024 - Dec 2024',
     org: 'C10 Labs',
-    location: 'Cambridge, Massachusetts',
+    location: 'Machine Learning Engineer Co-op',
     role: 'Machine Learning Engineer Co-op',
-    summary: 'Developed multi-agent systems for database retrieval, document processing, and high-volume email analysis.',
+    summary: 'Built multi-agent retrieval systems, extraction pipelines, and high-volume email automation.',
     bullets: [
-      'Developed a multi-agent RAG SQL chatbot using AutoGen and Neo4j knowledge graphs, achieving 75%+ accuracy.',
-      'Built document pipelines for 500-1,500 page specifications with LLM-powered extraction and summarization.',
-      'Built an email-classification system with 85%+ accuracy and reduced API costs by 40% through prompt and retrieval optimization.',
+      'Built a multi-agent RAG Q&A system using knowledge graphs.',
+      'Developed extraction pipelines for 500-1500 page documents.',
+      'Delivered contract risk assessment and high-volume email agents.',
     ],
-    stack: 'AutoGen / LangChain / LangGraph / OpenAI / Neo4j / Vector databases / AWS',
+    stack: 'AutoGen / LangChain / LangGraph / OpenAI / Neo4j',
   },
   {
     id: 'autodesk',
     date: 'Jun 2021 - Aug 2023',
     org: 'Autodesk',
-    location: 'Bengaluru, India',
+    location: 'Software Engineer',
     role: 'Software Engineer',
-    summary: 'Built enterprise authentication, access-provisioning, monitoring, and analytics systems in the Microsoft Azure ecosystem.',
+    summary: 'Worked on enterprise authentication and access tooling in the Microsoft Azure ecosystem.',
     bullets: [
-      'Architected Azure App Proxy solutions for secure enterprise authentication.',
-      'Automated SSO provisioning, reducing setup time from two weeks to three minutes.',
-      'Built Power BI dashboards and data pipelines for a Microsoft Authenticator rollout.',
+      'Built Azure App Proxy solutions for secure enterprise access.',
+      'Automated SSO provisioning.',
+      'Built Microsoft Authenticator analytics dashboards in Power BI.',
     ],
-    stack: 'Azure / Azure App Proxy / Python / Power BI / OAuth 2.0 / SAML / SSO',
+    stack: 'Azure / App Proxy / SSO / Power BI',
+  },
+  {
+    id: 'neu',
+    date: 'Aug 2023 - Dec 2025',
+    org: 'Northeastern University',
+    location: 'M.S. in Artificial Intelligence',
+    role: 'M.S. in Artificial Intelligence',
+    summary: 'Completed graduate study in AI with a 3.96/4.00 GPA and coursework spanning LLMs, ML, and NLP.',
+    bullets: [
+      'GPA: 3.96 / 4.00.',
+      'Coursework focused on large language models, machine learning, and natural language processing.',
+    ],
+    stack: 'Northeastern University / AI / LLMs / ML / NLP',
   },
 ];
 
 const focusNotes = [
-  ['Multi-agent AI systems', 'Orchestration, retrieval, and knowledge-graph workflows that connect language models to useful tools and data.'],
-  ['Efficient model adaptation', 'Parameter-efficient fine-tuning and practical experiments in selective knowledge removal.'],
-  ['AI people can use', 'Developer tools, accessibility interfaces, and production workflows built around real constraints.'],
+  ['Multi-agent systems', 'Orchestration, retrieval, and knowledge-graph workflows that connect language models to useful tools and data.'],
+  ['RAG and structured data', 'Practical retrieval, property analytics, and NL-to-SQL systems shaped around real constraints.'],
+  ['Model adaptation and unlearning', 'Parameter-efficient fine-tuning, selective knowledge removal, and careful evaluation.'],
 ];
 
 function Header({ dark, onThemeToggle }) {
@@ -305,9 +309,9 @@ export default function App() {
       <main id="top">
         <section className="hero page-width">
           <div className="hero-copy">
-            <p className="hero-role">AI Developer at Reidy.AI</p>
-            <h1>I build AI systems<br /><span>that hold up in use.</span></h1>
-            <p className="hero-intro">Agents, retrieval, model adaptation, and practical machine learning shaped around real constraints.</p>
+            <p className="hero-role">Full Stack AI Developer at Reidy.AI</p>
+            <h1>I build AI systems<br /><span>that survive real work.</span></h1>
+            <p className="hero-intro">Agents, retrieval, structured data, and model adaptation — with the discipline to keep the output useful.</p>
             <div className="hero-actions">
               <a className="primary-action" href="#entries">View work</a>
               <a className="secondary-action" href="mailto:dtejus03@gmail.com">Email me</a>
@@ -318,9 +322,9 @@ export default function App() {
             <figcaption>Tejus Dinesh / Houston, Texas</figcaption>
           </figure>
           <div className="hero-facts" aria-label="Profile summary">
-            <p><span>Current</span><strong>AI Developer, Reidy.AI</strong></p>
+            <p><span>Current</span><strong>Full Stack AI Developer, Reidy.AI</strong></p>
             <p><span>Background</span><strong>AI, ML, enterprise software</strong></p>
-            <p><span>Education</span><strong>MS in AI, Northeastern</strong></p>
+            <p><span>Education</span><strong>M.S. AI, Northeastern · 3.96 GPA</strong></p>
           </div>
         </section>
 
@@ -344,7 +348,7 @@ export default function App() {
         <section className="entries page-width" id="entries" data-reveal>
           <div className="section-heading">
             <h2>Selected work</h2>
-            <p>Research and builds where the implementation matters as much as the idea.</p>
+            <p>Research and builds where the implementation has to survive contact with reality.</p>
           </div>
           <div className="project-filters" role="group" aria-label="Filter projects">
             {[['all', 'All'], ['builds', 'Builds'], ['research', 'Research']].map(([value, label]) => (
@@ -358,7 +362,7 @@ export default function App() {
           <div className="page-width">
             <div className="experience-intro">
               <h2>From enterprise software to applied AI.</h2>
-              <p>Five years across engineering, research, and teaching, with the work itself kept visible.</p>
+              <p>Experience across app access, retrieval, knowledge graphs, document pipelines, and the little things that keep systems trustworthy.</p>
             </div>
             <div className="role-list">
               {experiences.map((experience) => (
@@ -379,13 +383,13 @@ export default function App() {
             <p>Based in Houston, I build AI systems, study how models behave, and keep a life outside the terminal.</p>
           </div>
           <div className="about-details">
-            <p>I completed my MS in Artificial Intelligence at Northeastern University in December 2025. My work spans multi-agent systems, RAG, knowledge graphs, model fine-tuning, machine unlearning, NLP, and developer tooling.</p>
-            <p>Chess, basketball, hiking, and television are part of the context, not a forced visual theme. Over time, this site can grow into technical notes, personal writing, photographs, and trip records.</p>
+            <p>I completed my MS in Artificial Intelligence at Northeastern University in December 2025 with a 3.96 GPA. My work spans multi-agent systems, RAG, knowledge graphs, model fine-tuning, machine unlearning, NLP, and developer tooling.</p>
+            <p>That combination is the point: shipping useful systems, not just elegant demos.</p>
           </div>
           <div className="future-pages" aria-label="Future site areas">
             <span>Projects</span>
             <span>Research</span>
-            <span>Notes</span>
+            <span>Writing</span>
             <span>Life</span>
           </div>
         </section>

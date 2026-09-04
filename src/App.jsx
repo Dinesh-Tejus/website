@@ -176,6 +176,14 @@ function ThemeIcon({ dark }) {
   );
 }
 
+function GitHubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.66-.21.66-.47v-1.72c-2.69.59-3.26-1.13-3.26-1.13-.44-1.12-1.08-1.42-1.08-1.42-.88-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.47 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.15-.25-4.41-1.07-4.41-4.77 0-1.05.38-1.91 1-2.58-.1-.25-.43-1.26.1-2.62 0 0 .82-.26 2.68.99a9.3 9.3 0 0 1 4.88 0c1.86-1.25 2.68-.99 2.68-.99.53 1.36.2 2.37.1 2.62.62.67 1 1.53 1 2.58 0 3.71-2.27 4.52-4.43 4.76.35.3.67.89.67 1.8v2.67c0 .26.18.57.67.47A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
   const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Contact']];
@@ -202,7 +210,10 @@ function Header({ dark, onThemeToggle }) {
           ))}
         </nav>
         <div className="header-actions">
-          <button className="theme-control" type="button" onClick={onThemeToggle} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
+          <a className="icon-control github-control" href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer" aria-label="Tejus Dinesh on GitHub" title="GitHub">
+            <GitHubIcon />
+          </a>
+          <button className="icon-control theme-control" type="button" onClick={onThemeToggle} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
             <ThemeIcon dark={dark} />
             <span className="sr-only">{dark ? 'Light mode' : 'Dark mode'}</span>
           </button>
@@ -465,23 +476,35 @@ export default function App() {
             </div>
           </div>
         </section>
-      </main>
-
-      <footer className="site-footer" id="contact">
-        <div className="page-width footer-layout" data-reveal>
-          <div>
+        <section className="contact page-width" id="contact" data-reveal>
+          <div className="section-heading section-heading--compact">
             <p className="eyebrow">Contact</p>
             <h2>Good work starts with a useful conversation.</h2>
-            <div className="footer-contact" aria-label="Contact Tejus Dinesh">
-              <a href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
-              <a href="tel:+18576547354">857-654-7354</a>
+            <p>If you are hiring for AI products, knowledge systems, or implementation-heavy roles, email is the fastest way to reach me.</p>
+          </div>
+          <div className="contact-layout">
+            <div className="contact-panel contact-panel--feature">
+              <p className="contact-label">Fastest route</p>
+              <h3>Email</h3>
+              <p className="contact-copy">Best for roles, collaborations, and project conversations.</p>
+              <a className="primary-action" href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
+              <a className="secondary-action" href="tel:+18576547354">Call or text 857-654-7354</a>
+            </div>
+            <div className="contact-panel">
+              <p className="contact-label">Elsewhere</p>
+              <div className="contact-links" aria-label="Contact links">
+                <a href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer">GitHub</a>
+                <span>Houston, Texas</span>
+              </div>
             </div>
           </div>
-          <div className="footer-links">
-            <a href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer">GitHub</a>
-            <span>&copy; 2026 Tejus Dinesh</span>
-          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="page-width footer-inner">
+          <span>&copy; 2026 Tejus Dinesh</span>
         </div>
       </footer>
       <EntryModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />

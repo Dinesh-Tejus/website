@@ -3,6 +3,28 @@ import portrait from '../images/portrait-refined-sharp.webp';
 import translationImage from '../images/EngToKan.webp';
 import blindSightImage from '../images/Blindsight.png';
 
+const heroProof = [
+  ['Current', 'Reidy.AI · Full Stack AI Developer'],
+  ['Scope', '70-100 page appraisal reports'],
+  ['Systems', '500-1500 page extraction pipelines'],
+  ['Training', 'Northeastern M.S. AI · 3.96/4.00 GPA'],
+];
+
+const focusAreas = [
+  {
+    title: 'Multi-agent systems',
+    text: 'Orchestration patterns that stay understandable as the workflow grows, with tools, retrieval, and handoffs wired together deliberately.',
+  },
+  {
+    title: 'RAG + knowledge graphs',
+    text: 'Document intelligence and structured retrieval for dense corpora, property data, and other domains where plain prompting is not enough.',
+  },
+  {
+    title: 'Model adaptation + unlearning',
+    text: 'Parameter-efficient fine-tuning, selective knowledge removal, and evaluation when the base model needs to be shaped for a specific job.',
+  },
+];
+
 const entries = [
   {
     id: 'scout',
@@ -10,12 +32,17 @@ const entries = [
     type: 'Voice AI',
     title: 'Scout: Voice-Powered Brand Research',
     shortTitle: 'Scout',
-    excerpt: 'A voice-powered brand research agent built with the Gemini 2.5 Live API, Tavily, and Firestore.',
+    excerpt: 'Live voice research workflow that combines Gemini 2.5 Live, Tavily search, and Firestore-backed state.',
     body: [
-      'Scout is a voice-powered agent for brand research, combining live voice interaction through the Gemini 2.5 Live API with web research from Tavily.',
-      'The application uses Firestore for data, FastAPI and React for its backend and frontend, and runs on Cloud Run.',
+      'Scout turns voice into a real research interface. A user can ask follow-up questions naturally while the system keeps state in Firestore and resolves live web sources through Tavily.',
+      'The application is built with FastAPI and React, runs on Cloud Run, and uses Gemini 2.5 Live for the conversational layer.',
     ],
-    signal: 'Gemini 2.5 Live + Tavily + Firestore',
+    signal: 'Gemini 2.5 Live / Tavily / Firestore',
+    proof: [
+      ['Context', 'Voice-first brand research'],
+      ['Build', 'FastAPI · React · Cloud Run'],
+      ['System', 'Live speech + web research'],
+    ],
   },
   {
     id: 'darwin',
@@ -25,10 +52,15 @@ const entries = [
     shortTitle: 'Darwin',
     excerpt: 'An AI-driven VS Code extension that flags unmaintained packages and helps automate migrations using Gemini and Tavily.',
     body: [
-      'Darwin scans Python and JavaScript or TypeScript imports for deprecated or unmaintained packages. It combines Tavily web search with Google Gemini analysis to assess package health.',
-      'The extension provides inline diagnostics, migration suggestions with diff previews, workspace-wide scanning, local caching, confidence thresholds, ignore lists, and undo support.',
+      'Darwin scans Python and JavaScript or TypeScript imports for deprecated or unmaintained packages, then uses web research and model analysis to judge package health.',
+      'The extension includes inline diagnostics, migration suggestions with diff previews, workspace-wide scanning, local caching, confidence thresholds, ignore lists, and undo support.',
     ],
-    signal: 'Gemini + Tavily + VS Code',
+    signal: 'Gemini / Tavily / VS Code',
+    proof: [
+      ['Context', 'Dependency health checks'],
+      ['Build', 'Inline diagnostics + diff previews'],
+      ['System', 'Workspace scanning with undo'],
+    ],
     link: 'https://github.com/Dinesh-Tejus/Darwin',
   },
   {
@@ -39,12 +71,17 @@ const entries = [
     shortTitle: 'BlindSight',
     excerpt: 'A voice-controlled file navigation prototype using Whisper CPP, Llama-70B through Groq, and text-to-speech.',
     body: [
-      'BlindSight is a high-fidelity prototype for voice-controlled file-system navigation for visually impaired users. Whisper CPP handles speech-to-text, while a Llama 70B model through the Groq API interprets natural-language commands.',
-      'The prototype supports folder navigation, file and directory creation, document reading and editing, text-to-speech feedback, and a keyboard interrupt control. Testing recorded 95% speech-recognition accuracy and an 85% task-success rate.',
+      'BlindSight is a high-fidelity prototype for voice-controlled file-system navigation for visually impaired users. Whisper CPP handles speech-to-text, while a Llama 70B model through Groq interprets natural-language commands.',
+      'The prototype supports folder navigation, file and directory creation, document reading and editing, text-to-speech feedback, and keyboard-interrupt control. Testing recorded 95% speech-recognition accuracy and an 85% task-success rate.',
     ],
     image: blindSightImage,
     alt: 'BlindSight project mark',
     signal: '95% speech accuracy / 85% task success',
+    proof: [
+      ['Context', 'Voice-controlled file navigation'],
+      ['Build', 'Whisper CPP · Groq · TTS'],
+      ['Result', '95% accuracy / 85% task success'],
+    ],
     link: 'https://github.com/Dinesh-Tejus/BlindSight',
   },
   {
@@ -56,9 +93,14 @@ const entries = [
     excerpt: 'A comparison of LoRA fine-tuning, sparse autoencoder feature ablation, and prompt-based guardrailing.',
     body: [
       'The project evaluates three approaches to removing Harry Potter knowledge from Llama-3-8B-Instruct: LoRA fine-tuning, sparse autoencoder feature ablation, and guardrailing.',
-      'LoRA increased target-domain perplexity from 24.58 to 5.7 x 10^12 while maintaining a WikiText-2 perplexity of 15.49. The sparse-autoencoder experiment ablated the 100 most active target-domain features for a more selective intervention.',
+      'LoRA increased target-domain perplexity from 24.58 to 5.7 × 10^12 while maintaining a WikiText-2 perplexity of 15.49. The sparse-autoencoder experiment ablated the 100 most active target-domain features for a more selective intervention.',
     ],
-    signal: 'Perplexity 24.58 to 5.7 x 10^12',
+    signal: 'Perplexity 24.58 → 5.7 × 10^12',
+    proof: [
+      ['Context', 'Targeted knowledge removal'],
+      ['Build', 'LoRA · SAE ablation · guardrailing'],
+      ['Result', 'Selective intervention on Llama-3-8B'],
+    ],
     link: 'https://github.com/Dinesh-Tejus/Machine-Unlearning',
   },
   {
@@ -73,6 +115,11 @@ const entries = [
       'LoRA recorded the highest ROUGE-1 score at 0.7385 with roughly 4 million trainable parameters. ETHER+ used 344,000 trainable parameters, recorded a ROUGE-1 score of 0.6278, and used 30% GPU compared with 80% for LoRA and OFT.',
     ],
     signal: '344K parameters / 30% GPU with ETHER+',
+    proof: [
+      ['Context', 'PEFT comparison study'],
+      ['Build', 'LoRA · OFT · ETHER'],
+      ['Result', '344K trainable params / 30% GPU'],
+    ],
     link: 'https://github.com/Dinesh-Tejus/Comparing-LORA-OFT-ETHER',
   },
   {
@@ -88,7 +135,12 @@ const entries = [
     ],
     image: translationImage,
     alt: 'Illustration of an encoder-decoder Kannada-English translation system',
-    signal: '150K sentence pairs / 15% BLEU improvement',
+    signal: '150K sentence pairs / 15% BLEU gain',
+    proof: [
+      ['Context', 'Kannada-English translation'],
+      ['Build', 'LSTM attention · mT5-base'],
+      ['Result', 'BLEU 0.0715 → 0.0823'],
+    ],
     link: 'https://github.com/Dinesh-Tejus/Kannada-English-Translation',
   },
 ];
@@ -100,13 +152,14 @@ const experiences = [
     org: 'Reidy.AI',
     location: 'Full Stack AI Developer',
     role: 'Full Stack AI Developer',
-    summary: 'Building an agentic property appraisal pipeline that turns dense inputs into long-form reports and usable decisions.',
+    summary: 'Leading applied AI work where the output has to be long, structured, and defensible.',
+    signal: '70-100 page reports / DuckDB NL-to-SQL / customer-facing architecture',
     bullets: [
-      'Built an agentic appraisal pipeline that generates 70-100 page property reports.',
-      'Developed NL-to-SQL workflows over property datasets with DuckDB.',
-      'Supported pre-sales discovery, architecture reviews, and POCs.',
+      'Built an agentic appraisal pipeline that turns property data into 70-100 page reports.',
+      'Developed DuckDB-backed NL-to-SQL workflows over property datasets.',
+      'Supported pre-sales discovery, architecture reviews, and POCs with customers.',
     ],
-    stack: 'DuckDB / NL-to-SQL / Agents / Property analytics',
+    stack: 'Agents / DuckDB / property analytics / technical discovery',
   },
   {
     id: 'c10',
@@ -114,7 +167,8 @@ const experiences = [
     org: 'C10 Labs',
     location: 'Machine Learning Engineer Co-op',
     role: 'Machine Learning Engineer Co-op',
-    summary: 'Built multi-agent retrieval systems, extraction pipelines, and high-volume email automation.',
+    summary: 'Built retrieval and automation systems for dense documents and high-volume workflows.',
+    signal: '500-1500 page extraction / knowledge graphs / email automation',
     bullets: [
       'Built a multi-agent RAG Q&A system using knowledge graphs.',
       'Developed extraction pipelines for 500-1500 page documents.',
@@ -128,7 +182,8 @@ const experiences = [
     org: 'Autodesk',
     location: 'Software Engineer',
     role: 'Software Engineer',
-    summary: 'Worked on enterprise authentication and access tooling in the Microsoft Azure ecosystem.',
+    summary: 'Worked on enterprise access and analytics tooling where reliability and rollout mattered.',
+    signal: 'Azure App Proxy / SSO automation / Power BI dashboards',
     bullets: [
       'Built Azure App Proxy solutions for secure enterprise access.',
       'Automated SSO provisioning.',
@@ -143,25 +198,31 @@ const experiences = [
     location: 'M.S. in Artificial Intelligence',
     role: 'M.S. in Artificial Intelligence',
     summary: 'Completed graduate study in AI with a 3.96/4.00 GPA and coursework spanning LLMs, ML, and NLP.',
+    signal: '3.96 GPA / LLMs / ML / NLP',
     bullets: [
       'GPA: 3.96 / 4.00.',
       'Coursework focused on large language models, machine learning, and natural language processing.',
     ],
-    stack: 'Northeastern University / AI / LLMs / ML / NLP',
+    stack: 'Northeastern University / AI / research foundation',
   },
 ];
 
-const focusNotes = [
-  ['Multi-agent systems', 'Orchestration, retrieval, and knowledge-graph workflows that connect language models to useful tools and data.'],
-  ['RAG and structured data', 'Practical retrieval, property analytics, and NL-to-SQL systems shaped around real constraints.'],
-  ['Model adaptation and unlearning', 'Parameter-efficient fine-tuning, selective knowledge removal, and careful evaluation.'],
+const currentFocus = [
+  {
+    title: 'Multi-agent systems',
+    text: 'Agent orchestration, tool use, and handoffs that remain understandable when the workflow stops being a demo and starts being a system.',
+  },
+  {
+    title: 'RAG and structured data',
+    text: 'Retrieval patterns, knowledge graphs, and NL-to-SQL setups that make language models useful against real datasets.',
+  },
+  {
+    title: 'Model adaptation and unlearning',
+    text: 'Fine-tuning, evaluation, and selective knowledge removal for teams that need control over what the model knows.',
+  },
 ];
 
-const profileFacts = [
-  ['Current', 'Full Stack AI Developer, Reidy.AI'],
-  ['Based in', 'Houston, Texas'],
-  ['Education', 'M.S. Artificial Intelligence, Northeastern · 3.96 GPA'],
-];
+const skills = ['Python', 'TypeScript', 'LangGraph', 'FastAPI', 'DuckDB', 'Neo4j', 'Azure', 'React'];
 
 function ThemeIcon({ dark }) {
   return dark ? (
@@ -186,7 +247,7 @@ function GitHubIcon() {
 
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
-  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Contact']];
+  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#focus', 'Current focus'], ['#about', 'About'], ['#contact', 'Contact']];
 
   useEffect(() => {
     if (!open) return undefined;
@@ -242,6 +303,19 @@ function ProjectVisual({ entry, modal = false }) {
   );
 }
 
+function ProofList({ items, compact = false }) {
+  return (
+    <dl className={compact ? 'project-proof project-proof--compact' : 'project-proof'}>
+      {items.map(([label, value]) => (
+        <div key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function ProjectCard({ entry, onOpen }) {
   return (
     <article className={`project-card ${entry.id === 'scout' ? 'project-card--featured' : ''}`}>
@@ -250,6 +324,7 @@ function ProjectCard({ entry, onOpen }) {
         <p className="project-type">{entry.type}</p>
         <h3>{entry.title}</h3>
         <p className="project-summary">{entry.excerpt}</p>
+        <ProofList items={entry.proof} compact />
         <div className="project-meta-row">
           <span>{entry.signal}</span>
           <button className="inline-action" type="button" onClick={() => onOpen(entry)}>Details</button>
@@ -327,6 +402,7 @@ function EntryModal({ entry, onClose }) {
         <div className="modal-copy" id="entry-modal-description">
           <p className="modal-type">{entry.type}</p>
           <h2 id="entry-modal-title">{entry.title}</h2>
+          <ProofList items={entry.proof} />
           {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           {entry.link && <a className="primary-action" href={entry.link} target="_blank" rel="noreferrer">Open repository</a>}
         </div>
@@ -348,9 +424,12 @@ function ExperienceRow({ experience, open, onToggle }) {
         <span className="role-toggle" aria-hidden="true">{open ? '−' : '+'}</span>
       </button>
       <div className="role-panel" id={`role-panel-${experience.id}`} hidden={!open}>
+        <p className="role-signal">{experience.signal}</p>
         <p className="role-summary">{experience.summary}</p>
         {experience.bullets.length > 0 && (
-          <ul>{experience.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+          <ul>
+            {experience.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+          </ul>
         )}
         {experience.stack && <p className="role-stack">{experience.stack}</p>}
       </div>
@@ -362,7 +441,6 @@ export default function App() {
   const [dark, setDark] = useState(() => localStorage.getItem('site-theme') === 'dark');
   const [selectedEntry, setSelectedEntry] = useState(null);
   const [openRole, setOpenRole] = useState('reidy');
-  const filteredEntries = entries;
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
@@ -391,41 +469,46 @@ export default function App() {
       <main id="main-content">
         <section className="hero page-width">
           <div className="hero-copy">
-            <p className="hero-role">Full Stack AI Developer at Reidy.AI</p>
-            <h1>I build AI systems<br /><span>that are useful in practice.</span></h1>
-            <p className="hero-intro">Agentic software, retrieval, structured data, and model adaptation: designed with enough discipline to hold up outside a demo.</p>
+            <p className="hero-role">Full Stack AI Developer · Reidy.AI</p>
+            <h1>I build AI systems that hold up under real work.</h1>
+            <p className="hero-intro">Agentic pipelines, retrieval layers, and data-heavy interfaces for long documents, property analytics, and enterprise workflows—shipped with enough rigor to be trusted outside a demo.</p>
+            <ul className="hero-proof" aria-label="Proof points">
+              {heroProof.map(([label, value]) => (
+                <li key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </li>
+              ))}
+            </ul>
             <div className="hero-actions">
               <a className="primary-action" href="#work">View work</a>
               <a className="secondary-action" href="mailto:dtejus03@gmail.com">Email me</a>
             </div>
-            <dl className="hero-facts" aria-label="Profile summary">
-              {profileFacts.map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
           <figure className="hero-portrait">
             <img src={portrait} alt="Tejus Dinesh wearing a coral hoodie in a glass atrium" />
-            <figcaption>Tejus Dinesh / Houston, Texas</figcaption>
+            <figcaption>Tejus Dinesh / engineering work across AI products, retrieval, and enterprise systems</figcaption>
           </figure>
         </section>
 
-        <section className="overview-band">
-          <div className="page-width overview-layout" data-reveal>
+        <section className="focus-band" id="focus">
+          <div className="page-width focus-layout" data-reveal>
             <div className="section-heading section-heading--compact">
-              <p className="eyebrow">Current direction</p>
-              <h2>Practical systems, careful implementation, and simple interfaces.</h2>
+              <p className="eyebrow">Current focus</p>
+              <h2>Building systems that connect models to data, tools, and workflows.</h2>
+              <p>Right now I’m focused on multi-agent orchestration, retrieval over dense documents, and model adaptation for product work that has to stay clear, auditable, and fast to ship.</p>
             </div>
-            <div className="overview-columns">
-              {focusNotes.map(([title, text]) => (
-                <div key={title} className="overview-item">
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
+            <div className="focus-grid">
+              {currentFocus.map((item) => (
+                <article key={item.title} className="focus-card">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
               ))}
+              <article className="focus-cta">
+                <p className="contact-label">Available for</p>
+                <p>AI product engineering, retrieval systems, multi-agent workflows, and implementation-heavy technical roles.</p>
+              </article>
             </div>
           </div>
         </section>
@@ -433,11 +516,11 @@ export default function App() {
         <section className="entries page-width" id="work" data-reveal>
           <div className="section-heading">
             <p className="eyebrow">Selected work</p>
-            <h2>Projects that were built to ship, not just to impress.</h2>
-            <p>Research and builds where the implementation has to survive contact with reality.</p>
+            <h2>Case studies from projects where the implementation details matter.</h2>
+            <p>These are systems with scale, constraints, and measurable outcomes—not portfolio cards that stop at the surface.</p>
           </div>
           <div className="project-grid">
-            {filteredEntries.map((entry) => (
+            {entries.map((entry) => (
               <ProjectCard key={entry.id} entry={entry} onOpen={setSelectedEntry} />
             ))}
           </div>
@@ -447,8 +530,8 @@ export default function App() {
           <div className="page-width experience-layout">
             <div className="section-heading section-heading--compact">
               <p className="eyebrow">Experience</p>
-              <h2>From enterprise software to applied AI.</h2>
-              <p>Experience across app access, retrieval, knowledge graphs, document pipelines, and the little things that keep systems trustworthy.</p>
+              <h2>Roles that show engineering leverage, not just tenure.</h2>
+              <p>From enterprise access to applied AI, the pattern is the same: ship systems that have to work, be explainable, and survive contact with users.</p>
             </div>
             <div className="role-list">
               {experiences.map((experience) => (
@@ -465,28 +548,29 @@ export default function App() {
 
         <section className="about page-width" id="about" data-reveal>
           <div className="section-heading section-heading--compact">
-            <p className="eyebrow">About</p>
-            <h2>A technical career is part of a life, not the whole page.</h2>
+            <p className="eyebrow">Background</p>
+            <h2>Graduate AI study, enterprise software, and applied systems work.</h2>
           </div>
           <div className="about-grid">
-            <p>I completed my MS in Artificial Intelligence at Northeastern University in December 2025 with a 3.96 GPA. My work spans multi-agent systems, RAG, knowledge graphs, model fine-tuning, machine unlearning, NLP, and developer tooling.</p>
-            <p>That combination is the point: shipping useful systems, not just elegant demos.</p>
-            <div className="about-points" aria-label="Selected focus areas">
-              {focusNotes.map(([title]) => <span key={title}>{title}</span>)}
+            <p>I completed an M.S. in Artificial Intelligence at Northeastern University with a 3.96/4.00 GPA, after engineering work at Autodesk and applied AI roles at C10 Labs and Reidy.AI.</p>
+            <p>The throughline across that path is simple: build useful systems, keep the interface clear, and measure the part that matters.</p>
+            <div className="about-points" aria-label="Selected skills">
+              {skills.map((skill) => <span key={skill}>{skill}</span>)}
             </div>
           </div>
         </section>
+
         <section className="contact page-width" id="contact" data-reveal>
           <div className="section-heading section-heading--compact">
             <p className="eyebrow">Contact</p>
-            <h2>Good work starts with a useful conversation.</h2>
-            <p>If you are hiring for AI products, knowledge systems, or implementation-heavy roles, email is the fastest way to reach me.</p>
+            <h2>If the work is real, email is the right next step.</h2>
+            <p>For roles, collaborations, or serious project conversations, reach out directly.</p>
           </div>
           <div className="contact-layout">
             <div className="contact-panel contact-panel--feature">
               <p className="contact-label">Fastest route</p>
               <h3>Email</h3>
-              <p className="contact-copy">Best for roles, collaborations, and project conversations.</p>
+              <p className="contact-copy">Best for hiring conversations, partnerships, and AI product work that needs implementation depth.</p>
               <a className="primary-action" href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
               <a className="secondary-action" href="tel:+18576547354">Call or text 857-654-7354</a>
             </div>
@@ -495,7 +579,7 @@ export default function App() {
               <div className="contact-links" aria-label="Contact links">
                 <a href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer">LinkedIn</a>
                 <a href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer">GitHub</a>
-                <span>Houston, Texas</span>
+                <span>Tejus Dinesh</span>
               </div>
             </div>
           </div>

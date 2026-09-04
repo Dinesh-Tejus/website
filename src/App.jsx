@@ -163,6 +163,19 @@ const profileFacts = [
   ['Education', 'M.S. Artificial Intelligence, Northeastern · 3.96 GPA'],
 ];
 
+function ThemeIcon({ dark }) {
+  return dark ? (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M18.3 15.7A8.5 8.5 0 0 1 8.3 5.7a7.5 7.5 0 1 0 10 10Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 2.75v2.1M12 19.15v2.1M4.85 4.85l1.48 1.48M17.67 17.67l1.48 1.48M2.75 12h2.1M19.15 12h2.1M4.85 19.15l1.48-1.48M17.67 6.33l1.48-1.48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
   const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Contact']];
@@ -177,8 +190,9 @@ function Header({ dark, onThemeToggle }) {
           ))}
         </nav>
         <div className="header-actions">
-          <button className="text-control" type="button" onClick={onThemeToggle} title="Change color theme">
-            {dark ? 'Light' : 'Dark'}
+          <button className="theme-control" type="button" onClick={onThemeToggle} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
+            <ThemeIcon dark={dark} />
+            <span className="sr-only">{dark ? 'Light mode' : 'Dark mode'}</span>
           </button>
           <button className="menu-control" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
             {open ? 'Close' : 'Menu'}
@@ -309,7 +323,7 @@ export default function App() {
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer at Reidy.AI</p>
             <h1>I build AI systems<br /><span>that are useful in practice.</span></h1>
-            <p className="hero-intro">Agentic software, retrieval, structured data, and model adaptation — designed with enough discipline to hold up outside a demo.</p>
+            <p className="hero-intro">Agentic software, retrieval, structured data, and model adaptation: designed with enough discipline to hold up outside a demo.</p>
             <div className="hero-actions">
               <a className="primary-action" href="#work">View work</a>
               <a className="secondary-action" href="mailto:dtejus03@gmail.com">Email me</a>

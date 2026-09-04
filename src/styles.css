@@ -152,6 +152,7 @@ nav a:focus-visible {
 }
 
 .text-control,
+.theme-control,
 .menu-control {
   min-height: 36px;
   padding: 0 12px;
@@ -166,10 +167,35 @@ nav a:focus-visible {
 }
 
 .text-control:hover,
+.theme-control:hover,
 .menu-control:hover {
   color: var(--ink);
   border-color: var(--line-strong);
   transform: translateY(-1px);
+}
+
+.theme-control {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  padding: 0;
+}
+
+.theme-control svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .menu-control {
@@ -313,24 +339,34 @@ h1 span {
 .hero-portrait {
   position: relative;
   margin: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 18px);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, var(--accent-soft)) 0%, var(--surface) 100%);
+  box-shadow: 0 22px 54px var(--shadow);
+  isolation: isolate;
 }
 
 .hero-portrait::before {
   position: absolute;
-  inset: 18px -14px -14px 18px;
+  inset: auto 10% 10% auto;
   z-index: -1;
-  border: 1px solid var(--line-strong);
-  border-radius: calc(var(--radius) + 6px);
+  width: 56%;
+  height: 56%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 72%);
+  filter: blur(24px);
+  opacity: 0.36;
   content: '';
 }
 
 .hero-portrait img {
   width: 100%;
   aspect-ratio: 0.84 / 1;
-  border-radius: var(--radius);
+  border-radius: calc(var(--radius) + 2px);
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 26px 60px var(--shadow);
+  box-shadow: none;
 }
 
 .hero-portrait figcaption {

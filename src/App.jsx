@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import portrait from '../images/portrait-refined-sharp.webp';
 import translationImage from '../images/EngToKan.webp';
 import blindSightImage from '../images/Blindsight.png';
@@ -180,11 +180,23 @@ function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
   const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#about', 'About'], ['#contact', 'Contact']];
 
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
   return (
     <header className="site-header">
       <div className="page-width header-inner">
-        <a className="brand" href="#top" aria-label="Tejus Dinesh, home">Tejus Dinesh</a>
-        <nav className={open ? 'is-open' : ''} aria-label="Primary navigation">
+        <a className="brand" href="#main-content" aria-label="Tejus Dinesh, home">Tejus Dinesh</a>
+        <nav id="primary-navigation" className={open ? 'is-open' : ''} aria-label="Primary navigation">
           {links.map(([href, label]) => (
             <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
           ))}
@@ -194,7 +206,7 @@ function Header({ dark, onThemeToggle }) {
             <ThemeIcon dark={dark} />
             <span className="sr-only">{dark ? 'Light mode' : 'Dark mode'}</span>
           </button>
-          <button className="menu-control" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
+          <button className="menu-control" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="primary-navigation" aria-label="Toggle navigation">
             {open ? 'Close' : 'Menu'}
           </button>
         </div>
@@ -237,14 +249,60 @@ function ProjectCard({ entry, onOpen }) {
 }
 
 function EntryModal({ entry, onClose }) {
+  const closeButtonRef = useRef(null);
+  const previouslyFocusedRef = useRef(null);
+
   useEffect(() => {
     if (!entry) return undefined;
-    const onKey = (event) => event.key === 'Escape' && onClose();
+    previouslyFocusedRef.current = document.activeElement;
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusable = Array.from(document.querySelectorAll('.entry-modal'))
+        .flatMap((node) => Array.from(node.querySelectorAll(focusableSelector)))
+        .filter((element) => !element.hasAttribute('disabled'));
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
     document.body.classList.add('dialog-open');
     window.addEventListener('keydown', onKey);
+    queueMicrotask(() => closeButtonRef.current?.focus());
     return () => {
       document.body.classList.remove('dialog-open');
       window.removeEventListener('keydown', onKey);
+      const previous = previouslyFocusedRef.current;
+      if (previous && typeof previous.focus === 'function') {
+        previous.focus();
+      }
     };
   }, [entry, onClose]);
 
@@ -252,10 +310,10 @@ function EntryModal({ entry, onClose }) {
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <article className="entry-modal" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title">
-        <button className="modal-close" type="button" onClick={onClose} aria-label="Close project details">Close</button>
+      <article className="entry-modal" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title" aria-describedby="entry-modal-description">
+        <button ref={closeButtonRef} className="modal-close" type="button" onClick={onClose} aria-label="Close project details">Close</button>
         <ProjectVisual entry={entry} modal />
-        <div className="modal-copy">
+        <div className="modal-copy" id="entry-modal-description">
           <p className="modal-type">{entry.type}</p>
           <h2 id="entry-modal-title">{entry.title}</h2>
           {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -269,7 +327,7 @@ function EntryModal({ entry, onClose }) {
 function ExperienceRow({ experience, open, onToggle }) {
   return (
     <article className={`role ${open ? 'is-expanded' : ''}`}>
-      <button className="role-heading" type="button" onClick={onToggle} aria-expanded={open}>
+      <button className="role-heading" type="button" onClick={onToggle} aria-expanded={open} aria-controls={`role-panel-${experience.id}`}>
         <span className="role-date">{experience.date}</span>
         <span className="role-identity">
           <strong>{experience.role}</strong>
@@ -278,7 +336,7 @@ function ExperienceRow({ experience, open, onToggle }) {
         <span className="role-location">{experience.location}</span>
         <span className="role-toggle" aria-hidden="true">{open ? '−' : '+'}</span>
       </button>
-      <div className="role-panel" hidden={!open}>
+      <div className="role-panel" id={`role-panel-${experience.id}`} hidden={!open}>
         <p className="role-summary">{experience.summary}</p>
         {experience.bullets.length > 0 && (
           <ul>{experience.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
@@ -317,8 +375,9 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header dark={dark} onThemeToggle={() => setDark((value) => !value)} />
-      <main id="top">
+      <main id="main-content">
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer at Reidy.AI</p>
@@ -415,7 +474,7 @@ export default function App() {
             <h2>Good work starts with a useful conversation.</h2>
             <div className="footer-contact" aria-label="Contact Tejus Dinesh">
               <a href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
-              <a href="tel:+185****7354">857-654-7354</a>
+              <a href="tel:+18576547354">857-654-7354</a>
             </div>
           </div>
           <div className="footer-links">

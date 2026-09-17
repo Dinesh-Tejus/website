@@ -611,8 +611,16 @@ h1 span {
 
 .project-card .project-image,
 .project-card .project-art {
+  width: 100%;
   min-height: 210px;
   border-bottom: 1px solid var(--line);
+}
+
+.project-card .project-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  background: var(--visual-bg);
 }
 
 .project-card--featured .project-image,
@@ -820,6 +828,14 @@ h1 span {
 .modal-image,
 .modal-art {
   min-height: 100%;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: color-mix(in srgb, var(--visual-bg) 72%, var(--surface));
 }
 
 .modal-copy {

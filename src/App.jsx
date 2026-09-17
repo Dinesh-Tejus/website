@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import portrait from '../images/portrait-refined-sharp.webp';
 import translationImage from '../images/EngToKan.webp';
 import blindSightImage from '../images/Blindsight.png';
+import scoutArchitectureImage from '../images/scout-architecture.jpeg';
 
 const heroProof = [
   ['Current', 'Reidy.AI · Full Stack AI Developer'],
@@ -15,20 +16,24 @@ const entries = [
   {
     id: 'scout',
     category: 'builds',
-    type: 'Case study · Voice AI',
-    title: 'Scout: Voice-Powered Brand Research',
+    type: 'Featured case study · Voice AI',
+    title: 'Scout: Voice-Powered Competitive Brand Intelligence',
     shortTitle: 'Scout',
-    excerpt: 'A voice-first research system for live brand investigation, where speech, search, and state management stay in sync.',
+    excerpt: 'A full-duplex voice and text system that lets founders and marketers research a visual competitive landscape in real time.',
     body: [
-      'Scout turns voice into a real research interface. A user can ask follow-up questions naturally while the system keeps state in Firestore and resolves live web sources through Tavily.',
-      'The application is built with FastAPI and React, runs on Cloud Run, and uses Gemini 2.5 Live for the conversational layer.',
+      'Scout turns a spoken prompt like “matcha brands in Boston” into a live competitive-intelligence session. It discovers relevant brands, refines the search loop, analyzes competitors’ visual identity, extracts positioning language, and streams market patterns plus white-space opportunities as research completes.',
+      'The system combines Gemini Live native audio for real-time conversation, Gemini Flash vision for brand-image analysis, Tavily search and Parallel AI extraction for grounded competitor discovery, and a FastAPI + React 19 TypeScript/Vite interface for streaming results.',
+      'Firestore caches source data and persists sessions, while Cloud Run and Cloud Build handle deployment. The important product detail is the loop: voice, search, extraction, vision analysis, synthesis, and UI streaming stay synchronized instead of becoming a static report.',
     ],
-    signal: 'Gemini 2.5 Live / Tavily / Firestore',
+    image: scoutArchitectureImage,
+    alt: 'High-level Scout architecture diagram showing voice, search, extraction, analysis, and streaming UI components',
+    signal: 'Gemini Live audio / Gemini Flash vision / grounded streaming research',
     proof: [
-      ['Problem', 'Voice-first brand research'],
-      ['System', 'FastAPI · React · Cloud Run'],
-      ['Why it mattered', 'Speech, search, and state in one loop'],
+      ['Interface', 'Full-duplex voice + text'],
+      ['Pipeline', 'Discovery · vision · positioning'],
+      ['Infra', 'FastAPI · React 19 · Firestore · Cloud Run'],
     ],
+    link: 'https://github.com/Dinesh-Tejus/Scout',
   },
   {
     id: 'darwin',

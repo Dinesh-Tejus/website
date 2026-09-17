@@ -36,6 +36,26 @@ const entries = [
     link: 'https://github.com/Dinesh-Tejus/Scout',
   },
   {
+    id: 'portfolio-threat-agent',
+    category: 'builds',
+    type: 'Case study · Applied AI monitoring',
+    title: 'Portfolio Threat Early Warning Agent',
+    shortTitle: 'Threat Agent',
+    excerpt: 'A source-grounded research agent that watches a stock portfolio for validated negative catalysts, ranks materiality, and delivers concise threat briefs.',
+    body: [
+      'Portfolio Threat Early Warning Agent is a local research-and-monitoring system for investors who want portfolio-specific awareness without turning the product into a trading bot. A user supplies a portfolio JSON, then the agent searches the web with Tavily for recent negative catalysts that could matter to each holding.',
+      'The important reliability boundary is deliberate: the agent discovers candidate threats, while the application verifies each claim against retrieved source snippets, enriches approved signals with Yahoo Finance market context, ranks materiality using exposure, sector concentration, stop distance, recency, severity, and price reaction, then renders a concise threat brief.',
+      'Monitor mode sends validated new threats to Telegram and dedupes by source URL. The project explicitly avoids price prediction, trade recommendations, and stop changes, and includes a historical evaluation harness over known news windows that scores ticker, event, date, and materiality labels instead of rewarding final wording.',
+    ],
+    signal: 'Source-grounded retrieval / validation / materiality ranking / evals',
+    proof: [
+      ['Boundary', 'Agent discovers · app verifies'],
+      ['Delivery', 'Telegram monitor + URL dedupe'],
+      ['Eval', 'Historical news-window harness'],
+    ],
+    link: 'https://github.com/Dinesh-Tejus/Portfolio-Threat-Early-Warning-Agent',
+  },
+  {
     id: 'darwin',
     category: 'builds',
     type: 'Case study · Developer tools',

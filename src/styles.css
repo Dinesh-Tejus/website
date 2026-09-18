@@ -434,8 +434,10 @@ h1 span {
 
 .hero-portrait {
   position: relative;
+  justify-self: end;
   margin: 0;
   padding: 14px;
+  width: 90%;
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 18px);
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, var(--accent-soft)) 0%, var(--surface) 100%);
@@ -458,7 +460,7 @@ h1 span {
 
 .hero-portrait img {
   width: 100%;
-  aspect-ratio: 0.84 / 1;
+  aspect-ratio: 0.92 / 1;
   border-radius: calc(var(--radius) + 2px);
   object-fit: cover;
   object-position: center;

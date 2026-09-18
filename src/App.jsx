@@ -554,7 +554,7 @@ export default function App() {
           </div>
           <figure className="hero-portrait">
             <img src={portrait} alt="Tejus Dinesh wearing a coral hoodie in a glass atrium" />
-            <figcaption>Tejus Dinesh / engineering work across AI products, retrieval, and enterprise systems</figcaption>
+            <figcaption>So, what are we building next?</figcaption>
           </figure>
         </section>
 

@@ -239,6 +239,29 @@ const currentFocus = [
 
 const skills = ['Python', 'TypeScript', 'LangGraph', 'FastAPI', 'DuckDB', 'Neo4j', 'Azure', 'React'];
 
+const proofItems = [
+  {
+    eyebrow: 'Certification',
+    title: 'Nebius Agentic AI Builder Certification',
+    meta: 'Nebius Academy · Intermediate certification · Issued Aug 28, 2026 · Expires Aug 28, 2029',
+    body: 'Credential issued to Tejus Dinesh for AI agents, AI applications, generative AI, and workflow design.',
+    link: 'https://www.credly.com/badges/93e96bfb-90ff-4cf6-8345-11fb9eea01f9',
+    linkLabel: 'View Credly badge',
+    tags: ['AI Agents', 'AI applications', 'Generative AI', 'Workflows'],
+  },
+  {
+    eyebrow: 'Publication',
+    title: 'IoT-Equipped Smart Campus Using LoRa Technology',
+    meta: 'Conference paper · Springer Singapore · ICDSMLA 2021 · Lecture Notes in Electrical Engineering, vol 947 · pp. 327–335',
+    body: 'Published online February 7, 2023; analyzes LoRa technology for smart campus activities.',
+    citation: 'Annapurna, D., Tejus, D., Narayan, G., Hegde, S., PratimMishra, P. (2023). IoT-Equipped Smart Campus Using LoRa Technology. In: Kumar, A., Senatore, S., Gunjan, V.K. (eds) ICDSMLA 2021. Lecture Notes in Electrical Engineering, vol 947. Springer, Singapore.',
+    link: 'https://link.springer.com/chapter/10.1007/978-981-19-5936-3_30',
+    linkLabel: 'View Springer chapter',
+    doi: 'https://doi.org/10.1007/978-981-19-5936-3_30',
+    tags: ['LoRa', 'Smart campus', 'IoT systems'],
+  },
+];
+
 function ThemeIcon({ dark }) {
   return dark ? (
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -262,7 +285,7 @@ function GitHubIcon() {
 
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
-  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#focus', 'Current focus'], ['#about', 'About'], ['#contact', 'Contact']];
+  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#proof', 'Proof'], ['#focus', 'Current focus'], ['#about', 'About'], ['#contact', 'Contact']];
 
   useEffect(() => {
     if (!open) return undefined;
@@ -453,6 +476,25 @@ function ExperienceRow({ experience, open, onToggle }) {
   );
 }
 
+function ProofCard({ item }) {
+  return (
+    <article className="proof-card">
+      <p className="proof-eyebrow">{item.eyebrow}</p>
+      <h3>{item.title}</h3>
+      <p className="proof-meta">{item.meta}</p>
+      <p className="proof-body">{item.body}</p>
+      {item.citation && <p className="proof-citation">{item.citation}</p>}
+      <div className="proof-tags" aria-label={`${item.eyebrow} details`}>
+        {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
+      </div>
+      <div className="proof-links">
+        <a className="inline-action" href={item.link} target="_blank" rel="noreferrer">{item.linkLabel}</a>
+        {item.doi && <a className="secondary-action" href={item.doi} target="_blank" rel="noreferrer">DOI</a>}
+      </div>
+    </article>
+  );
+}
+
 export default function App() {
   const [dark, setDark] = useState(() => localStorage.getItem('site-theme') === 'dark');
   const [selectedEntry, setSelectedEntry] = useState(null);
@@ -560,6 +602,17 @@ export default function App() {
                 />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="proof page-width" id="proof" data-reveal>
+          <div className="section-heading">
+            <p className="eyebrow">Credentials & publication</p>
+            <h2>Additional proof points behind the applied AI and systems work.</h2>
+            <p>A concise record of external validation: an agentic AI credential and a peer-reviewed Springer conference paper.</p>
+          </div>
+          <div className="proof-grid">
+            {proofItems.map((item) => <ProofCard key={item.title} item={item} />)}
           </div>
         </section>
 

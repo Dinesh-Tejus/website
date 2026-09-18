@@ -582,6 +582,7 @@ h1 span {
 }
 
 .entries,
+.proof,
 .about,
 .site-footer {
   padding-top: 72px;
@@ -969,6 +970,88 @@ h1 span {
   font-size: 0.88rem;
 }
 
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.proof-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-height: 100%;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-top-color: color-mix(in srgb, var(--accent) 44%, var(--line));
+  border-radius: calc(var(--radius) + 8px);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--accent-soft)) 0%, var(--surface) 100%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.05);
+}
+
+.proof-eyebrow,
+.proof-card h3,
+.proof-meta,
+.proof-body,
+.proof-citation {
+  margin: 0;
+}
+
+.proof-eyebrow {
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.proof-card h3 {
+  font-size: 1.28rem;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.proof-meta {
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.proof-body,
+.proof-citation {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.proof-citation {
+  font-size: 0.9rem;
+}
+
+.proof-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.proof-tags span {
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--canvas) 48%, var(--surface));
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.proof-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -1095,6 +1178,7 @@ h1 span {
   .focus-layout,
   .experience-layout,
   .about-grid,
+  .proof-grid,
   .entry-modal,
   .footer-layout,
   .contact-layout {
@@ -1176,6 +1260,7 @@ h1 span {
 
   .hero-actions,
   .project-meta-row,
+  .proof-links,
   .footer-contact,
   .footer-links {
     flex-direction: column;
@@ -1225,7 +1310,8 @@ h1 span {
   .modal-copy,
   .focus-card,
   .focus-cta,
-  .overview-item {
+  .overview-item,
+  .proof-card {
     padding: 18px;
   }
 

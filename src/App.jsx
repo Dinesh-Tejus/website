@@ -536,7 +536,7 @@ export default function App() {
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer · Reidy.AI</p>
-            <h1>Turning frontier AI ideas into usable software.</h1>
+            <h1>Applied AI research, engineered into real products.</h1>
             <p className="hero-intro">AI engineer-researcher building agents, retrieval systems, voice interfaces, and model workflows that survive contact with real users.</p>
             <p className="hero-note">I work where research meets product: prototyping quickly, grounding systems in evidence, and engineering the path from model behavior to shipped software.</p>
             <ul className="hero-proof" aria-label="Proof points">

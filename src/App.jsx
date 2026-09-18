@@ -6,9 +6,6 @@ import scoutArchitectureImage from '../images/scout-architecture.jpeg';
 
 const heroProof = [
   ['Current', 'Reidy.AI · Full Stack AI Developer'],
-  ['Scope', '70-100 page appraisal reports'],
-  ['Systems', '500-1500 page extraction pipelines'],
-  ['Training', 'Northeastern M.S. AI · 3.96/4.00 GPA'],
   ['Stack', 'Agents · DuckDB · FastAPI · React'],
 ];
 
@@ -224,16 +221,16 @@ const experiences = [
 
 const currentFocus = [
   {
-    title: 'Agent workflows that stay legible',
-    text: 'Orchestration, tools, and handoffs designed for systems that need to be debuggable, not just impressive in a demo.',
+    title: 'Ship the workflow',
+    text: 'Turn ambiguous business problems into usable AI tools with clean interfaces and real adoption paths.',
   },
   {
-    title: 'Dense-document retrieval',
-    text: 'RAG, knowledge graphs, and NL-to-SQL for corpora and datasets that are too large or structured for plain prompting.',
+    title: 'Ground the system',
+    text: 'Connect models to documents, databases, APIs, and live sources so answers are traceable.',
   },
   {
-    title: 'Model shaping with constraints',
-    text: 'Fine-tuning, evaluation, and selective knowledge removal when the model has to be controlled as tightly as the product.'
+    title: 'Keep it honest',
+    text: 'Add checks, evals, and boundaries so the product behaves under messy real-world inputs.'
   },
 ];
 
@@ -283,9 +280,17 @@ function GitHubIcon() {
   );
 }
 
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5.2 8.7h3.1v10.1H5.2V8.7Zm1.6-4.9a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6Zm3.8 4.9h3v1.4h.04c.42-.8 1.45-1.65 3-1.65 3.2 0 3.8 2.1 3.8 4.85v5.5h-3.1v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58v4.99h-3.1V8.7Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 function Header({ dark, onThemeToggle }) {
   const [open, setOpen] = useState(false);
-  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#proof', 'Proof'], ['#focus', 'Current focus'], ['#about', 'About'], ['#contact', 'Contact']];
+  const links = [['#work', 'Work'], ['#experience', 'Experience'], ['#proof', 'Proof'], ['#focus', 'Build thesis'], ['#contact', 'Contact']];
 
   useEffect(() => {
     if (!open) return undefined;
@@ -311,6 +316,9 @@ function Header({ dark, onThemeToggle }) {
         <div className="header-actions">
           <a className="icon-control github-control" href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer" aria-label="Tejus Dinesh on GitHub" title="GitHub">
             <GitHubIcon />
+          </a>
+          <a className="icon-control github-control" href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer" aria-label="Tejus Dinesh on LinkedIn" title="LinkedIn">
+            <LinkedInIcon />
           </a>
           <button className="icon-control theme-control" type="button" onClick={onThemeToggle} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
             <ThemeIcon dark={dark} />
@@ -528,9 +536,9 @@ export default function App() {
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer · Reidy.AI</p>
-            <h1>I build production-grade AI products from messy data, documents, and live sources.</h1>
-            <p className="hero-intro">Applied AI systems across agentic workflows, retrieval and data pipelines, and multimodal voice interfaces that turn complex inputs into usable products.</p>
-            <p className="hero-note">Current work centers on appraisal reports, NL-to-SQL over property data, and the infrastructure that makes model output reliable in customer-facing systems.</p>
+            <h1>Turning frontier AI ideas into usable software.</h1>
+            <p className="hero-intro">AI engineer-researcher building agents, retrieval systems, voice interfaces, and model workflows that survive contact with real users.</p>
+            <p className="hero-note">I work where research meets product: prototyping quickly, grounding systems in evidence, and engineering the path from model behavior to shipped software.</p>
             <ul className="hero-proof" aria-label="Proof points">
               {heroProof.map(([label, value]) => (
                 <li key={label}>
@@ -553,9 +561,9 @@ export default function App() {
         <section className="focus-band" id="focus">
           <div className="page-width focus-layout" data-reveal>
             <div className="section-heading section-heading--compact">
-              <p className="eyebrow">Current focus</p>
-              <h2>What I’m focused on now is the seam where models meet data, tools, and operators.</h2>
-              <p>I’m optimizing for systems that are practical, inspectable, and hard to confuse with a demo.</p>
+              <p className="eyebrow">Build thesis</p>
+              <h2>Where AI gets real: data, tools, users.</h2>
+              <p>A quick read on the kind of systems I like building: useful, grounded, and shipped.</p>
             </div>
             <div className="focus-grid">
               {currentFocus.map((item) => (
@@ -564,10 +572,6 @@ export default function App() {
                   <p>{item.text}</p>
                 </article>
               ))}
-              <article className="focus-cta">
-                <p className="contact-label">Now</p>
-                <p>Working on agentic workflows, dense-document retrieval, model adaptation, and the evaluation discipline that keeps those systems honest.</p>
-              </article>
             </div>
           </div>
         </section>
@@ -616,40 +620,25 @@ export default function App() {
           </div>
         </section>
 
-        <section className="about page-width" id="about" data-reveal>
-          <div className="section-heading section-heading--compact">
-            <p className="eyebrow">Background</p>
-            <h2>Graduate AI study, enterprise software, and applied systems work.</h2>
-          </div>
-          <div className="about-grid">
-            <p>I completed an M.S. in Artificial Intelligence at Northeastern University with a 3.96/4.00 GPA, after engineering work at Autodesk and applied AI roles at C10 Labs and Reidy.AI.</p>
-            <p>The throughline across that path is simple: build useful systems, keep the interface clear, and measure the part that matters.</p>
-            <div className="about-points" aria-label="Selected skills">
-              {skills.map((skill) => <span key={skill}>{skill}</span>)}
-            </div>
-          </div>
-        </section>
-
         <section className="contact page-width" id="contact" data-reveal>
           <div className="section-heading section-heading--compact">
             <p className="eyebrow">Contact</p>
-            <h2>If the work is serious, email is the right next step.</h2>
-            <p>For roles, partnerships, or product work that needs implementation depth, reach out directly.</p>
+            <h2>Let’s build something useful.</h2>
+            <p>Best for AI engineering roles, product builds, and collaborations where shipping matters.</p>
           </div>
           <div className="contact-layout">
             <div className="contact-panel contact-panel--feature">
               <p className="contact-label">Fastest route</p>
-              <h3>Email</h3>
-              <p className="contact-copy">Best for hiring conversations, collaborations, and AI product work that needs a builder who can move from model choice to production delivery.</p>
+              <h3>Email me</h3>
+              <p className="contact-copy">Hiring, consulting, applied AI builds, or serious collaborations — send the context and I’ll respond directly.</p>
               <a className="primary-action" href="mailto:dtejus03@gmail.com">dtejus03@gmail.com</a>
               <a className="secondary-action" href="tel:+185****7354">Call or text 857-654-7354</a>
             </div>
             <div className="contact-panel">
-              <p className="contact-label">Elsewhere</p>
+              <p className="contact-label">Profiles</p>
               <div className="contact-links" aria-label="Contact links">
                 <a href="https://www.linkedin.com/in/tejus-dinesh/" target="_blank" rel="noreferrer">LinkedIn</a>
                 <a href="https://github.com/Dinesh-Tejus" target="_blank" rel="noreferrer">GitHub</a>
-                <span>Tejus Dinesh</span>
               </div>
             </div>
           </div>

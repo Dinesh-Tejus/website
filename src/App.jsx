@@ -486,9 +486,9 @@ export default function App() {
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="hero-role">Full Stack AI Developer · Reidy.AI</p>
-            <h1>I build AI systems for dense documents, property analytics, and enterprise workflows.</h1>
-            <p className="hero-intro">Agentic pipelines, retrieval layers, and data-heavy interfaces built to survive long reports, high-volume extraction, and customer review.</p>
-            <p className="hero-note">Current work centers on appraisal reports, NL-to-SQL over property data, and the infrastructure around making model output usable.</p>
+            <h1>I build production-grade AI products from messy data, documents, and live sources.</h1>
+            <p className="hero-intro">Applied AI systems across agentic workflows, retrieval and data pipelines, and multimodal voice interfaces that turn complex inputs into usable products.</p>
+            <p className="hero-note">Current work centers on appraisal reports, NL-to-SQL over property data, and the infrastructure that makes model output reliable in customer-facing systems.</p>
             <ul className="hero-proof" aria-label="Proof points">
               {heroProof.map(([label, value]) => (
                 <li key={label}>

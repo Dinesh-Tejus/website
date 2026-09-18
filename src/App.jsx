@@ -243,7 +243,7 @@ const proofItems = [
   {
     eyebrow: 'Certification',
     title: 'Nebius Agentic AI Builder Certification',
-    meta: 'Nebius Academy · Intermediate certification · Issued Aug 28, 2026 · Expires Aug 28, 2029',
+    meta: 'Nebius Academy · Certification · Issued Aug 28, 2026 · Expires Aug 28, 2029',
     body: 'Credential issued to Tejus Dinesh for AI agents, AI applications, generative AI, and workflow design.',
     link: 'https://www.credly.com/badges/93e96bfb-90ff-4cf6-8345-11fb9eea01f9',
     linkLabel: 'View Credly badge',
